@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "src/Component/Header";
 import NavBar from "src/Component/NavBar";
 import Landing from "src/Component/Choose_Disaster";
-import Login from "src/Component/LoginSignUp/Login";
+import Login from "src/Component/LoginVictim/Login";
 import SOS from "src/Containers/SOS";
 function App() {
   return (

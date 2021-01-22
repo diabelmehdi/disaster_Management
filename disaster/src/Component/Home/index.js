@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
 import { FormControlLabel } from "@material-ui/core";
 import Modal from "react-modal";
-import Login from "src/Component/LoginSignUp/Login";
+import Login from "src/Component/LoginVictim/Login";
 import SOS from "src/Containers/SOS";
 Modal.setAppElement("#root");
 function Home() {
@@ -39,7 +39,7 @@ function Home() {
               className="bt"
               variant="contained"
               color="primary"
-              onClick={() => setModalIsOpen(true)}
+              //onClick={() => setModalIsOpen(true)}
               startIcon={<FlightLandIcon />}
             >
               Rescue Helper

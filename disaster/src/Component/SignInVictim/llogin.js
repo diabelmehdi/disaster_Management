@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Login from "src/Component/LoginSignUp/Login";
+import Login from "src/Component/LoginVictim/Login";
 import "date-fns";
 
 const useStyles = makeStyles((theme) => ({

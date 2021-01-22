@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { Face, Fingerprint } from "@material-ui/icons";
 import Modal from "react-modal";
-import SignUp from "src/Component/SignUp/llogin";
+import SignUp from "src/Component/SignInVictim/llogin";
 import { InputForm } from "src/Component/Notification";
 
 Modal.setAppElement("#root");
