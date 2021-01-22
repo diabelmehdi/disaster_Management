@@ -1,13 +1,6 @@
-
-
-
- a{
-   
-    font-family: 'Oswald', sans-serif;
-    font-size:40px ;
-    text-decoration: none;
-    color:rgb(255, 255, 254);
-    margin-left: 220px;
-    text-align:right;
-
+.lego {
+  font-family: "Oswald", sans-serif !important;
+  font-size: 40px !important;
+  text-decoration: none !important;
+  color: rgb(255, 255, 254) !important;
 }

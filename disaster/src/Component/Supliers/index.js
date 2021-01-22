@@ -1,12 +1,12 @@
 import React from 'react'
 import './Style.css'
-
+import Card2 from 'src/Component/UI/Card2'
 
 const Supliers = (props) => {
   return(
-    <div>
+    <Card2>
         Supliers are ...
-    </div>
+    </Card2>
    )
 
  }

@@ -1,19 +1,16 @@
 import React from 'react'
-import Card from 'src/Component/Card';
-import Header from 'src/Component/NavBar';
-import Logo from 'src/Component/Logo';
+import './Style.css'
+import Home from 'src/Component/Home'
 
-
-
-const  Home = (props) => {
+const  HomePage = (props) => {
   return(
     <div>
    
-     Home
+     <Home/>
    
    </div>
    )
 
 }
 
-export default Home;
+export default HomePage;

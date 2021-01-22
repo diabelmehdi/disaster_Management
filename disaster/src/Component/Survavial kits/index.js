@@ -1,14 +1,14 @@
 
 import React from 'react'
 import './Style.css'
-
+import Card2 from 'src/Component/UI/Card2'
 
 const Survavial_Kits = (props) => {
   return(
     
-           <div>
+           <Card2>
         Survavial_Kits are ...
-           </div>
+           </Card2>
     
      
    

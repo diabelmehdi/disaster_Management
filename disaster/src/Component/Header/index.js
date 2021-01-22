@@ -1,18 +1,16 @@
-import React from 'react';
-import './Style.css';
-import Card from 'src/Component/Card';
-import Logo from 'src/Component/Logo';
+import React from "react";
+import "./Style.css";
+import Card from "src/Component/UI/Card";
+import Logo from "src/Component/Logo";
 
 const Header = (props) => {
-  return(
- 
+  return (
     <div>
-         <Card>
-       <Logo/>
-       </Card>
+      <Card>
+        <Logo />
+      </Card>
     </div>
-    )
-
- }
+  );
+};
 
 export default Header;
