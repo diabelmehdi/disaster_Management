@@ -10,8 +10,8 @@ import Grid from "@material-ui/core/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
 import { FormControlLabel } from "@material-ui/core";
 import Modal from "react-modal";
-import Login from "src/Component/LOGIN_SIGNUP/Login";
-
+import Login from "src/Component/LoginSignUp/Login";
+import SOS from "src/Containers/SOS";
 Modal.setAppElement("#root");
 function Home() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -52,6 +52,7 @@ function Home() {
               className="bt3"
               variant="contained"
               color="secondary"
+              href="/SOS"
               // onClick={() => setModalIsOpen(true)}
             >
               <Typography variant="h1">SOS</Typography>

@@ -8,7 +8,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "src/Component/Header";
 import NavBar from "src/Component/NavBar";
 import Landing from "src/Component/Choose_Disaster";
-
+import Login from "src/Component/LoginSignUp/Login";
+import SOS from "src/Containers/SOS";
 function App() {
   return (
     <Router>
@@ -20,6 +21,8 @@ function App() {
         <Route path="/Help" exact component={Help} />
         <Route path="/Supliers" eaxact component={Supliers} />
         <Route path="/Landing" eaxact component={Landing} />
+        <Route path="/Login" exact component={Login} />
+        <Route path="/SOS" exact component={SOS} />
       </div>
     </Router>
   );

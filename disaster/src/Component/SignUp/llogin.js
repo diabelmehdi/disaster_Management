@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Login from "src/Component/LOGIN_SIGNUP/Login";
+import Login from "src/Component/LoginSignUp/Login";
 import "date-fns";
 
 const useStyles = makeStyles((theme) => ({
@@ -183,6 +183,7 @@ export default function SignUp() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              href="/Login"
             >
               Sign Up
             </Button>
