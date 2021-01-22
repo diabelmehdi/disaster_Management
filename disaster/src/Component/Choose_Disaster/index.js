@@ -38,10 +38,37 @@ export default function AutoGrid() {
         setModalContent(<Disaster />);
         break;
       case "Earthquake":
-        setModalContent(<div>hejri</div>);
+        setModalContent(<Disaster />);
         break;
       case "Landslide":
-        setModalContent(<div>hejri</div>);
+        setModalContent(<Disaster />);
+        break;
+      case "Flood":
+        setModalContent(<Disaster />);
+        break;
+      case "Fire":
+        setModalContent(<Disaster />);
+        break;
+      case "Thunderstorm":
+        setModalContent(<Disaster />);
+        break;
+      case "Windstorm":
+        setModalContent(<Disaster />);
+        break;
+      case "Snakebite":
+        setModalContent(<Disaster />);
+        break;
+      case "Epidimic":
+        setModalContent(<Disaster />);
+        break;
+      case "Drought":
+        setModalContent(<Disaster />);
+        break;
+      case "Avalanche":
+        setModalContent(<Disaster />);
+        break;
+      case "Hailstorm":
+        setModalContent(<Disaster />);
         break;
       default:
         alert("Not found..");
@@ -71,7 +98,7 @@ export default function AutoGrid() {
               className="chooseDisasterBtPrinc"
               variant="contained"
               color="secondary"
-              onClick={() => openModal("Earthquake")}
+              onClick={() => openModal("EARTHQUAKE")}
             >
               <Typography variant="subtitle2">EARTHQUAKE</Typography>
             </Button>
@@ -90,94 +117,112 @@ export default function AutoGrid() {
           </Box>
         </Grid>
         <Grid item xs={4}>
-          <Button
-            className="chooseDisasterBtPrinc"
-            variant="contained"
-            color="secondary"
-            // onClick={() => setModalIsOpen(true)}
-          >
-            <Typography variant="subtitle2">FLOOD</Typography>
-          </Button>
+          <Box display="flex" justifyContent="center">
+            <Button
+              className="chooseDisasterBtPrinc"
+              variant="contained"
+              color="secondary"
+              onClick={() => openModal("Flood")}
+            >
+              <Typography variant="subtitle2">FLOOD</Typography>
+            </Button>
+          </Box>
         </Grid>
         <Grid item xs={4}>
-          <Button
-            className="chooseDisasterBtPrinc"
-            variant="contained"
-            color="secondary"
-            // onClick={() => setModalIsOpen(true)}
-          >
-            <Typography variant="subtitle2">FIRE</Typography>
-          </Button>
+          <Box display="flex" justifyContent="center">
+            <Button
+              className="chooseDisasterBtPrinc"
+              variant="contained"
+              color="secondary"
+              onClick={() => openModal("Fire")}
+            >
+              <Typography variant="subtitle2">FIRE</Typography>
+            </Button>
+          </Box>
         </Grid>
         <Grid item xs={4}>
-          <Button
-            className="chooseDisasterBtPrinc"
-            variant="contained"
-            color="secondary"
-            // onClick={() => setModalIsOpen(true)}
-          >
-            <Typography variant="subtitle2">THUNDERSTORM</Typography>
-          </Button>
+          <Box display="flex" justifyContent="center">
+            <Button
+              className="chooseDisasterBtPrinc"
+              variant="contained"
+              color="secondary"
+              onClick={() => openModal("Thunderstorm")}
+            >
+              <Typography variant="subtitle2">THUNDERSTORM</Typography>
+            </Button>
+          </Box>
         </Grid>
         <Grid item xs={4}>
-          <Button
-            className="chooseDisasterBtPrinc"
-            variant="contained"
-            color="secondary"
-            // onClick={() => setModalIsOpen(true)}
-          >
-            <Typography variant="subtitle2">WINDSTORM</Typography>
-          </Button>
+          <Box display="flex" justifyContent="center">
+            <Button
+              className="chooseDisasterBtPrinc"
+              variant="contained"
+              color="secondary"
+              onClick={() => openModal("Windstorm")}
+            >
+              <Typography variant="subtitle2">WINDSTORM</Typography>
+            </Button>
+          </Box>
         </Grid>
         <Grid item xs={4}>
-          <Button
-            className="chooseDisasterBtPrinc"
-            variant="contained"
-            color="secondary"
-            // onClick={() => setModalIsOpen(true)}
-          >
-            <Typography variant="subtitle2">SNAKEBITE</Typography>
-          </Button>
+          <Box display="flex" justifyContent="center">
+            <Button
+              className="chooseDisasterBtPrinc"
+              variant="contained"
+              color="secondary"
+              onClick={() => openModal("Snakebite")}
+            >
+              <Typography variant="subtitle2">SNAKEBITE</Typography>
+            </Button>
+          </Box>
         </Grid>
         <Grid item xs={4}>
-          <Button
-            className="chooseDisasterBtPrinc"
-            variant="contained"
-            color="secondary"
-            // onClick={() => setModalIsOpen(true)}
-          >
-            <Typography variant="subtitle2">EPIDEMIC</Typography>
-          </Button>
+          <Box display="flex" justifyContent="center">
+            <Button
+              className="chooseDisasterBtPrinc"
+              variant="contained"
+              color="secondary"
+              onClick={() => openModal("Epidimic")}
+            >
+              <Typography variant="subtitle2">EPIDEMIC</Typography>
+            </Button>
+          </Box>
         </Grid>
         <Grid item xs={4}>
-          <Button
-            className="chooseDisasterBtPrinc"
-            variant="contained"
-            color="secondary"
-            // onClick={() => setModalIsOpen(true)}
-          >
-            <Typography variant="subtitle2">DROUGHT</Typography>
-          </Button>
+          <Box display="flex" justifyContent="center">
+            <Button
+              className="chooseDisasterBtPrinc"
+              variant="contained"
+              color="secondary"
+              onClick={() => openModal("Drought")}
+            >
+              <Typography variant="subtitle2">DROUGHT</Typography>
+            </Button>
+          </Box>
         </Grid>
         <Grid item xs={4}>
-          <Button
-            className="chooseDisasterBtPrinc"
-            variant="contained"
-            color="secondary"
-            // onClick={() => setModalIsOpen(true)}
-          >
-            <Typography variant="subtitle2">AVALANCHE</Typography>
-          </Button>
+          <Box display="flex" justifyContent="center">
+            <Button
+              className="chooseDisasterBtPrinc"
+              variant="contained"
+              color="secondary"
+              onClick={() => openModal("Avalanche")}
+            >
+              <Typography variant="subtitle2">AVALANCHE</Typography>
+            </Button>
+          </Box>
         </Grid>
         <Grid item xs={4}>
-          <Button
-            className="chooseDisasterBtPrinc"
-            variant="contained"
-            color="secondary"
-            // onClick={() => setModalIsOpen(true)}
-          >
-            <Typography variant="subtitle2">HAILSTROM</Typography>
-          </Button>
+          <Box display="flex" justifyContent="center">
+            <Button
+              className="chooseDisasterBtPrinc"
+              variant="contained"
+              color="secondary"
+              onClick={() => openModal("Hailstorm")}
+            >
+              <Typography variant="subtitle2">HAILSTORM</Typography>
+            </Button>
+          </Box>
         </Grid>
       </Grid>
       <Modal open={modalState} onClose={() => setModalState(false)}>
