@@ -44,9 +44,7 @@ const InputForm = () => {
   };
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [phoneContent, setPhoneContent] = React.useState(
-    <div>phoneContent</div>
-  );
+  const [phoneContent, setPhoneContent] = React.useState(<div>101</div>);
   const [notificationContent, setNotificationContent] = React.useState(
     <div>content2</div>
   );

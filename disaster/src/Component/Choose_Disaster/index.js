@@ -98,7 +98,7 @@ export default function AutoGrid() {
               className="chooseDisasterBtPrinc"
               variant="contained"
               color="secondary"
-              onClick={() => openModal("EARTHQUAKE")}
+              onClick={() => openModal("Earthquake")}
             >
               <Typography variant="subtitle2">EARTHQUAKE</Typography>
             </Button>
