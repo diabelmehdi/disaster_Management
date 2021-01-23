@@ -9,12 +9,48 @@ import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Checkbox from "@material-ui/core/Checkbox";
 import { FormControlLabel } from "@material-ui/core";
-import Modal from "react-modal";
+import Modal from "@material-ui/core/Modal";
 import Login from "src/Component/LoginVictim/Login";
 import SOS from "src/Containers/SOS";
-Modal.setAppElement("#root");
+import Container from "@material-ui/core/Container";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "white",
+  },
+}));
+
 function Home() {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const classes = useStyles();
+  const [modalContent, setModalContent] = React.useState(<div></div>);
+  const [modalState, setModalState] = React.useState(false);
+
+  const openModal = (login) => {
+    console.log(login);
+    switch (login) {
+      case "Victim":
+        setModalContent(<Login />);
+        break;
+      case "Rescue":
+        setModalContent("fdf");
+        break;
+      default:
+        alert("Not found..");
+        return;
+    }
+    setModalState(true);
+  };
   return (
     <Card2>
       <Grid container spacing={3}>
@@ -30,7 +66,7 @@ function Home() {
               variant="contained"
               color="primary"
               startIcon={<FlightTakeoffIcon />}
-              onClick={() => setModalIsOpen(true)}
+              onClick={() => openModal("Victim")}
             >
               Victim
             </Button>
@@ -59,12 +95,11 @@ function Home() {
             </Button>
           </Box>
         </Grid>
-        <Modal
-          isOpen={modalIsOpen}
-          shouldCloseOnOverlayClick={false}
-          onRequestClose={() => setModalIsOpen(false)}
-        >
-          <Login />
+        <Modal open={modalState} onClose={() => setModalState(false)}>
+          <Container component="main" maxWidth="md">
+            <CssBaseline />
+            <div className={classes.paper}>{modalContent}</div>
+          </Container>
         </Modal>
 
         <Grid item xs={12}>
