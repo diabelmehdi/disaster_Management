@@ -10,6 +10,7 @@ import NavBar from "src/Component/NavBar";
 import Landing from "src/Component/Choose_Disaster";
 import Login from "src/Component/LoginVictim/Login";
 import SOS from "src/Containers/SOS";
+import LoginRescue from "src/Component/LoginRescue/AppRescue";
 function App() {
   return (
     <Router>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Landing" eaxact component={Landing} />
         <Route path="/Login" exact component={Login} />
         <Route path="/SOS" exact component={SOS} />
+        <Route path="/LoginRescue" exact component={LoginRescue} />
       </div>
     </Router>
   );

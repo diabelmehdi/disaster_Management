@@ -15,6 +15,7 @@ import SOS from "src/Containers/SOS";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
+import LoginResc from "src/Component/LoginforRescue/LoginResc";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +44,7 @@ function Home() {
         setModalContent(<Login />);
         break;
       case "Rescue":
-        setModalContent("fdf");
+        setModalContent(<LoginResc />);
         break;
       default:
         alert("Not found..");
@@ -75,7 +76,7 @@ function Home() {
               className="bt"
               variant="contained"
               color="primary"
-              //onClick={() => setModalIsOpen(true)}
+              onClick={() => openModal("Rescue")}
               startIcon={<FlightLandIcon />}
             >
               Rescue Helper
