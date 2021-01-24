@@ -11,7 +11,6 @@ import {
 import { Face, Fingerprint } from "@material-ui/icons";
 import Modal from "react-modal";
 import SignInRescue from "src/Component/SignInRescue/rlogin";
-import LoginRescue from "src/Component/LoginRescue/AppRescue";
 import { InputForm } from "src/Component/Notification";
 
 Modal.setAppElement("#root");
