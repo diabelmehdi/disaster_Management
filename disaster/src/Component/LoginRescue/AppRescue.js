@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { ToggleSwitch } from "./Component/ToggleSwitch";
-import { MapWithMarker } from "./Component/MapWithMarker";
-import { Message } from "./Component/Message";
-import { ButtonTable } from "./Component/ButtonTable";
+import { ToggleSwitch } from "src/Component/ToggleSwitch";
+import { MapWithMarker } from "src/Component/MapWithMarker";
+import { Message } from "src/Component/Message";
+import { ButtonTable } from "src/Component/ButtonTable/index";
 import "./AppRescue.css";
 
 export const ThemeContext = React.createContext({
