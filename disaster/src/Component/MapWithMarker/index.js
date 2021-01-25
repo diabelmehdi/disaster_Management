@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { useGoogleMaps } from "react-hook-google-maps";
 import { ThemeContext } from "../LoginRescue/AppRescue";
 import "./Style.css";
@@ -7,7 +7,7 @@ const uluru = { lat: 52.237049, lng: 21.017532 };
 let adress = "Prasowa 29 Warsaw";
 
 export const MapWithMarker = React.memo(function Map() {
-  const {victims,setDataVictims} = useContext(ThemeContext);
+  const { victims, setDataVictims } = useContext(ThemeContext);
   const { ref, map, google } = useGoogleMaps(
     "AIzaSyBkz_rtiTK4wHl18HUy_BnjmKnMEn4FxRw",
     {
@@ -16,7 +16,7 @@ export const MapWithMarker = React.memo(function Map() {
     }
   );
 
-  console.log(victims[0].city)
+  // console.log(victims[0].city)
 
   const geocoder = new window.google.maps.Geocoder();
 
