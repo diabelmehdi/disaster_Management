@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ToggleSwitch } from "src/Component/ToggleSwitch";
 import { MapWithMarker } from "src/Component/MapWithMarker";
 import { Message } from "src/Component/Message";
@@ -6,22 +6,20 @@ import { ButtonTable } from "src/Component/ButtonTable/index";
 import "./AppRescue.css";
 
 export const ThemeContext = React.createContext({
-  message: "Madzia",
-  setMessage: (mess) => {},
+  victims: [],
+  setVictims: () => {}
 });
 
 function AppRescue() {
-  const [message, setMessage] = useState("Message");
+  const [victims, setVictims] = useState([]);
 
+  function setDataVictims(table){
+    setVictims(table);
+  }
   return (
-    <ThemeContext.Provider value={{ message, setMessage }}>
+    <ThemeContext.Provider value={{victims, setDataVictims}}>
       <div>
-        <div class="topnav">
-          <a href="#home">RescueHelper</a>
-          <a href="#back">Back</a>
-          <a href="#user">User</a>
-        </div>
-        <ButtonTable messageTo={message} />
+        <ButtonTable messageTo='Table' />
         <div class="lol">
           <MapWithMarker />
         </div>
