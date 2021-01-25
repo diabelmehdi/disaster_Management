@@ -9,11 +9,9 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import { Face, Fingerprint } from "@material-ui/icons";
-import Modal from "react-modal";
+import Modal from "@material-ui/core/Modal";
 import SignInRescue from "src/Component/SignInRescue/rlogin";
 import { InputForm } from "src/Component/Notification";
-
-Modal.setAppElement("#root");
 
 const styles = (theme) => ({
   margin: {
@@ -112,9 +110,8 @@ class LoginTab extends React.Component {
               </Button>
 
               <Modal
-                isOpen={this.state.openModal}
-                shouldCloseOnOverlayClick={false}
-                onRequestClose={() => this.manageModal(false)}
+                open={this.state.openModal}
+                onClose={() => this.manageModal(false)}
               >
                 <SignInRescue />
               </Modal>

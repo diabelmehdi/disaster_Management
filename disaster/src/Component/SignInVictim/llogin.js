@@ -17,10 +17,11 @@ import "date-fns";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    background: "white",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -28,10 +29,13 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(0),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(0, 0, 1),
+  },
+  Modal: {
+    overflow: "scroll",
   },
 }));
 
@@ -39,7 +43,7 @@ export default function SignUp() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" className={classes.paper} maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -110,63 +114,57 @@ export default function SignUp() {
                 autoComplete="current-password"
               />
             </Grid>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="fname"
-                  name="Blood type"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="Blood type"
-                  label="Blood type"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="Location"
-                  label="Location"
-                  name="Location"
-                  autoComplete="lction"
-                />
-              </Grid>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="fname"
-                    name="Allergy"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="Allergy"
-                    label="Allergy"
-                    autoFocus
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="Phone Number"
-                    label="Phone Number"
-                    name="Phone Number"
-                    autoComplete="lction"
-                  />
-                </Grid>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I Agree to the Policy"
-                />
-              </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="Blood type"
+                variant="outlined"
+                required
+                fullWidth
+                id="Blood type"
+                label="Blood type"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="Location"
+                label="Location"
+                name="Location"
+                autoComplete="lction"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="Allergy"
+                variant="outlined"
+                required
+                fullWidth
+                id="Allergy"
+                label="Allergy"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="Phone Number"
+                label="Phone Number"
+                name="Phone Number"
+                autoComplete="lction"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I Agree to the Policy"
+              />
             </Grid>
             <Grid item xs={12}>
               <form className={classes.root} noValidate autoComplete="off">
@@ -187,17 +185,20 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            <Grid container justify="flex-end">
-              <Grid item>
-                <Link href="Login" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </Grid>
         </form>
+        <Box
+          mt={1}
+          mb={1}
+          display="flex"
+          justifyContent="flex-end"
+          width="100%"
+        >
+          <Link href="Login" variant="body2">
+            Already have an account? Sign in
+          </Link>
+        </Box>
       </div>
-      <Box mt={5}></Box>
     </Container>
   );
 }

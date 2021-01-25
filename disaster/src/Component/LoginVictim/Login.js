@@ -9,11 +9,9 @@ import {
   Checkbox,
 } from "@material-ui/core";
 import { Face, Fingerprint } from "@material-ui/icons";
-import Modal from "react-modal";
+import Modal from "@material-ui/core/Modal";
 import SignUp from "src/Component/SignInVictim/llogin";
 import { InputForm } from "src/Component/Notification";
-
-Modal.setAppElement("#root");
 
 const styles = (theme) => ({
   margin: {
@@ -21,6 +19,9 @@ const styles = (theme) => ({
   },
   padding: {
     padding: theme.spacing.unit,
+  },
+  paper: {
+    backgroundColor: "white",
   },
 });
 
@@ -41,7 +42,7 @@ class LoginTab extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Paper className={classes.padding}>
+      <Paper elevation={1} className={classes.padding}>
         <div className={classes.margin}>
           <Grid container spacing={8} alignItems="flex-end">
             <Grid item>
@@ -112,9 +113,8 @@ class LoginTab extends React.Component {
               </Button>
 
               <Modal
-                isOpen={this.state.openModal}
-                shouldCloseOnOverlayClick={false}
-                onRequestClose={() => this.manageModal(false)}
+                open={this.state.openModal}
+                onClose={() => this.manageModal(false)}
               >
                 <SignUp />
               </Modal>
