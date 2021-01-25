@@ -47,9 +47,9 @@ class LoginTab extends React.Component {
             </Grid>
             <Grid item md={true} sm={true} xs={true}>
               <TextField
-                id="username"
-                label="Username"
-                type="email"
+                id="Matriculation Number"
+                label="Matriculation Number"
+                type="Number"
                 fullWidth
                 autoFocus
                 required
@@ -62,7 +62,7 @@ class LoginTab extends React.Component {
             </Grid>
             <Grid item md={true} sm={true} xs={true}>
               <TextField
-                id="username"
+                id="Password"
                 label="Password"
                 type="password"
                 fullWidth
