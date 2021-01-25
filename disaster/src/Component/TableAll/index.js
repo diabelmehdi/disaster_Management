@@ -18,7 +18,7 @@ export const TableAll = (props) => {
           paging: false,
           selection: true,
           headerStyle: {
-            backgroundColor: '#84221C',
+            backgroundColor: 'blue',
             color: '#FFF'
           }
         }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Style.css";
 import { TableAll } from "src/Component/TableAll";
 import allData from "src/Component/TableAll/allData";
@@ -7,6 +7,7 @@ import victimsColumns from "src/Component/TableAll/victimsColumns";
 import sosColumns from "src/Component/TableAll/sosColumns";
 import VictimService from "src/Component/ApiService/VictimService";
 import SosService from "src/Component/ApiService/SosService";
+import { ThemeContext } from "src/Component/LoginRescue/AppRescue";
 
 export const ButtonTable = (props) => {
   const [buttonClicked, setButtonClicked] = useState("Type of Emergency");
@@ -15,12 +16,16 @@ export const ButtonTable = (props) => {
   const [victimTable, setVictimTable] = useState([]);
   const [tableColumns, setTableColumns] = useState(allColumns);
 
+  const {victims,setDataVictims} = useContext(ThemeContext);
+   
+
   const buttonPressed = (e) => {
     switch (e.target.name) {
       case "All":
-        setButtonClicked(props.messageTo);
+        setButtonClicked("All");
         setTableColumns(allColumns);
         setTableName(allData);
+        console.log(victims)
         break;
       case "Victims":
         setButtonClicked("Victims");
@@ -41,6 +46,9 @@ export const ButtonTable = (props) => {
   useEffect(() => {
     VictimService.getVictims().then((response) => {
       setVictimTable(response.data);
+      setDataVictims(response.data);
+      
+      
     });
 
     SosService.getSos().then((response) => {
