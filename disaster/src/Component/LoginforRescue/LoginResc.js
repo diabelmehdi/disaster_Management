@@ -49,7 +49,7 @@ class LoginTab extends React.Component {
               <TextField
                 id="Matriculation Number"
                 label="Matriculation Number"
-                type="Number"
+                // type=""
                 fullWidth
                 autoFocus
                 required

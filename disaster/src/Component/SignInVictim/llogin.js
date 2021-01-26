@@ -77,7 +77,18 @@ export default function SignUp() {
                 autoComplete="lname"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="UserName"
+                label="UserName"
+                name="UserName"
+                autoComplete="Usrame"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
               <form className={classes.container} noValidate>
                 <TextField
                   id="date"

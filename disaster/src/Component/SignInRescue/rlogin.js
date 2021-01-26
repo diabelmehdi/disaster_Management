@@ -113,7 +113,7 @@ export default function SignUp() {
               />
             </Grid>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={8}>
                 <TextField
                   autoComplete="fname"
                   name="Matriculation Number"
@@ -125,7 +125,7 @@ export default function SignUp() {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={4}>
                 <TextField
                   variant="outlined"
                   required
