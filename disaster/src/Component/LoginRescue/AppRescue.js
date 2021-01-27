@@ -10,14 +10,27 @@ export const ThemeContext = React.createContext({
   setVictims: () => {}
 });
 
+export const SosContext = React.createContext(
+  {
+    sosCases:[],
+    setSosCases: () => {}
+  }
+);
+
 function AppRescue() {
   const [victims, setVictims] = useState([]);
 
   function setDataVictims(table){
     setVictims(table);
   }
+  const [sosCases, setSosCases] = useState([]);
+
+  function setDataSOS(table){
+    setSosCases(table);
+  }
   return (
     <ThemeContext.Provider value={{victims, setDataVictims}}>
+    <SosContext.Provider value = {{sosCases,setSosCases}}>
       <div>
         <ButtonTable messageTo='Table' />
         <div class="lol">
@@ -36,6 +49,7 @@ function AppRescue() {
           </div>
         </div>
       </div>
+      </SosContext.Provider>
     </ThemeContext.Provider>
   );
 }

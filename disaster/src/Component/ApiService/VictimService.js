@@ -8,6 +8,10 @@ class VictimService {
     getVictims(){
       return axios.get(VICTIMS_REST_API_URL)
     }
+
+    createVictim(victim){
+      return axios.post(VICTIMS_REST_API_URL,victim)
+    }
 }
 
 export default new VictimService()

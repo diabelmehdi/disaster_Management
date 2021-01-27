@@ -7,7 +7,7 @@ import victimsColumns from "src/Component/TableAll/victimsColumns";
 import sosColumns from "src/Component/TableAll/sosColumns";
 import VictimService from "src/Component/ApiService/VictimService";
 import SosService from "src/Component/ApiService/SosService";
-import { ThemeContext } from "src/Component/LoginRescue/AppRescue";
+import { SosContext, ThemeContext } from "src/Component/LoginRescue/AppRescue";
 
 export const ButtonTable = (props) => {
   const [buttonClicked, setButtonClicked] = useState("Type of Emergency");
@@ -16,7 +16,8 @@ export const ButtonTable = (props) => {
   const [victimTable, setVictimTable] = useState([]);
   const [tableColumns, setTableColumns] = useState(allColumns);
 
-  const {victims,setDataVictims} = useContext(ThemeContext);
+  const {setDataVictims} = useContext(ThemeContext);
+  const {setSosCases} = useContext(SosContext);
    
 
   const buttonPressed = (e) => {
@@ -25,7 +26,6 @@ export const ButtonTable = (props) => {
         setButtonClicked("All");
         setTableColumns(allColumns);
         setTableName(allData);
-        console.log(victims)
         break;
       case "Victims":
         setButtonClicked("Victims");
@@ -48,11 +48,11 @@ export const ButtonTable = (props) => {
       setVictimTable(response.data);
       setDataVictims(response.data);
       
-      
     });
 
     SosService.getSos().then((response) => {
       setSosTable(response.data);
+      setSosCases(response.data);
     });
   }, []);
 

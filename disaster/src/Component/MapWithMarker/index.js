@@ -1,13 +1,14 @@
 import React, {useContext} from "react";
 import { useGoogleMaps } from "react-hook-google-maps";
-import { ThemeContext } from "../LoginRescue/AppRescue";
+import { SosContext, ThemeContext } from "../LoginRescue/AppRescue";
 import "./Style.css";
 
 const uluru = { lat: 52.237049, lng: 21.017532 };
 let adress = "Prasowa 29 Warsaw";
 
 export const MapWithMarker = React.memo(function Map() {
-  const {victims,setDataVictims} = useContext(ThemeContext);
+  const {victims} = useContext(ThemeContext);
+  const {sosCases} = useContext(SosContext);
   const { ref, map, google } = useGoogleMaps(
     "AIzaSyBkz_rtiTK4wHl18HUy_BnjmKnMEn4FxRw",
     {
@@ -15,23 +16,33 @@ export const MapWithMarker = React.memo(function Map() {
       center: uluru,
     }
   );
-
-  console.log(victims[0].city)
-
   const geocoder = new window.google.maps.Geocoder();
 
   if (map) {
-    geocoder.geocode({ address: adress }, (results, status) => {
+    for( var i=0;i<victims.length;i++){
+    const adres = victims[i].street + victims[i].nrStreet + victims[i].city; 
+    geocoder.geocode({ address: adres }, (results, status) => {
       if (status === "OK") {
         new window.google.maps.Marker({
           map: map,
           position: results[0].geometry.location,
+          icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
         });
       } else {
         alert("Something is wrong" + status);
       }
     });
+    
   }
 
+  for (var i = 0;i<sosCases.length;i++){
+    const adres = {lat: sosCases[i].latitude , lng: sosCases[i].longtitude}
+      new window.google.maps.Marker({
+        map: map,
+        position: adres,
+        icon:  "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+      });
+  }
+}
   return <div ref={ref} class="map-map" />;
 });
