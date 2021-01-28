@@ -13,7 +13,6 @@ import Modal from "@material-ui/core/Modal";
 import SignUp from "src/Component/SignInVictim/llogin";
 import { InputForm } from "src/Component/Notification";
 import { useHistory } from "react-router-dom";
-
 const styles = (theme) => ({
   margin: {
     margin: theme.spacing.unit * 2,
