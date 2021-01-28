@@ -41,7 +41,7 @@ class LoginTab extends React.Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleConnection = this.handleConnection.bind(this);
   }
   handleChange(event) {
     let input = this.state.input;
@@ -52,35 +52,37 @@ class LoginTab extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleConnection(event) {
+    console.log("test1");
     event.preventDefault();
     // this.props.history.push("/LoginRescue");
-    if (this.validate()) {
+    if (this.validateConnForm()) {
       console.log(this.state);
 
       let input = {};
-      input["User Name"] = "";
-      input["password"] = "";
+      input["User_Name"] = "";
+      input["password1"] = "";
       this.setState({ input: input });
       window.location.href = "/Landing";
       alert("Registration successful");
     }
   }
 
-  validate() {
+  validateConnForm() {
+    console.log("test15");
     let input = this.state.input;
     let errors = {};
     let isValid = true;
 
-    if (!input["User Name"]) {
+    if (!input["User_Name"]) {
       isValid = false;
       console.log("test");
-      errors["User Name"] = "Please enter your name.";
+      errors["User_Name"] = "Please enter your User name.";
     }
 
-    if (!input["password"]) {
+    if (!input["password1"]) {
       isValid = false;
-      errors["password"] = "Please enter your password.";
+      errors["password1"] = "Please enter your password.";
     }
 
     this.setState({
@@ -99,96 +101,96 @@ class LoginTab extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Paper elevation={1} className={classes.padding}>
-          <div className={classes.margin}>
-            <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <Face />
-              </Grid>
-              <Grid item md={true} sm={true} xs={true}>
-                <input
-                  type="text"
-                  name="User Name"
-                  value={this.state.input["User Name"]}
-                  onChange={this.handleChange}
-                  class="form-control"
-                  placeholder="User Name"
-                  id="User Name"
-                />
-                <div className="text-danger">
-                  {this.state.errors["User Name"]}
-                </div>
-              </Grid>
+      <Paper elevation={1} className={classes.padding}>
+        <div className={classes.margin}>
+          <Grid container spacing={8} alignItems="flex-end">
+            <Grid item>
+              <Face />
             </Grid>
-            <Grid container spacing={8} alignItems="flex-end">
-              <Grid item>
-                <Fingerprint />
-              </Grid>
-              <Grid item md={true} sm={true} xs={true}>
-                <input
-                  type="password"
-                  name="password"
-                  value={this.state.input.password}
-                  onChange={this.handleChange}
-                  class="form-control"
-                  placeholder="Enter password"
-                  id="password"
-                />
+            <Grid item md={true} sm={true} xs={true}>
+              <input
+                type="text"
+                name="User_Name"
+                value={this.state.input["User_Name"]}
+                onChange={this.handleChange}
+                class="form-control"
+                placeholder="User Name"
+                id="User_Name"
+              />
+              <div className="text-danger">
+                {this.state.errors["User_Name"]}
+              </div>
+            </Grid>
+          </Grid>
+          <Grid container spacing={8} alignItems="flex-end">
+            <Grid item>
+              <Fingerprint />
+            </Grid>
+            <Grid item md={true} sm={true} xs={true}>
+              <input
+                type="password"
+                name="password1"
+                value={this.state.input["password1"]}
+                onChange={this.handleChange}
+                class="form-control"
+                placeholder="Enter password"
+                id="password1"
+              />
 
-                <div className="text-danger">{this.state.errors.password}</div>
-              </Grid>
+              <div className="text-danger">
+                {this.state.errors["password1"]}
+              </div>
             </Grid>
-            <Grid container alignItems="center" justify="space-between">
-              <Grid item>
-                <FormControlLabel
-                  control={<Checkbox color="primary" />}
-                  label="Remember me"
-                />
-              </Grid>
-              <Grid item>
-                <Button
-                  disableFocusRipple
-                  disableRipple
-                  style={{ textTransform: "none" }}
-                  variant="text"
-                  color="primary"
-                >
-                  Forgot password ?
-                </Button>
-              </Grid>
+          </Grid>
+          <Grid container alignItems="center" justify="space-between">
+            <Grid item>
+              <FormControlLabel
+                control={<Checkbox color="primary" />}
+                label="Remember me"
+              />
             </Grid>
-            <Grid container justify="center" style={{ marginTop: "11px" }}>
+            <Grid item>
+              <Button
+                disableFocusRipple
+                disableRipple
+                style={{ textTransform: "none" }}
+                variant="text"
+                color="primary"
+              >
+                Forgot password ?
+              </Button>
+            </Grid>
+          </Grid>
+          <Grid container justify="center" style={{ marginTop: "11px" }}>
+            <Button
+              variant="outlined"
+              color="primary"
+              style={{ textTransform: "none" }}
+              onClick={this.handleConnection}
+            >
+              Login
+            </Button>
+
+            <Grid container justify="center" style={{ marginTop: "10px" }}>
               <Button
                 variant="outlined"
                 color="primary"
                 style={{ textTransform: "none" }}
-                type="submit"
+                onClick={() => this.manageModal(true)}
               >
-                Login
+                Sign In
               </Button>
 
-              <Grid container justify="center" style={{ marginTop: "10px" }}>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  style={{ textTransform: "none" }}
-                  onClick={() => this.manageModal(true)}
-                >
-                  Sign In
-                </Button>
-
-                <Modal
-                  open={this.state.openModal}
-                  onClose={() => this.manageModal(false)}
-                >
-                  <SignUp />
-                </Modal>
-              </Grid>
+              <Modal
+                open={this.state.openModal}
+                onClose={() => this.manageModal(false)}
+              >
+                <SignUp />
+              </Modal>
             </Grid>
-          </div>
-        </Paper>
-      </form>
+          </Grid>
+        </div>
+      </Paper>
     );
   }
 }
