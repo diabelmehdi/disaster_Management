@@ -12,6 +12,8 @@ import Login from "src/Component/LoginVictim/Login";
 import SOS from "src/Containers/SOS";
 import LoginRescue from "src/Component/LoginRescue/AppRescue";
 import LoginResc from "src/Component/LoginforRescue/LoginResc";
+import forgot from "src/Component/PasswordAuth/forgot";
+import reset from "src/Component/PasswordAuth/reset";
 function App() {
   return (
     <Router>
@@ -27,6 +29,8 @@ function App() {
         <Route path="/SOS" exact component={SOS} />
         <Route path="/LoginRescue" exact component={LoginRescue} />
         <Route path="/LoginResc" exact component={LoginResc} />
+        <Route path="/forgot" exact component={forgot} />
+        <Route path="/reset/:id" exact component={reset} />
       </div>
     </Router>
   );

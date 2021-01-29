@@ -11,6 +11,7 @@ import {
 import { Face, Fingerprint } from "@material-ui/icons";
 import Modal from "@material-ui/core/Modal";
 import SignUp from "src/Component/SignInVictim/llogin";
+import Link from "@material-ui/core/Link";
 import { InputForm } from "src/Component/Notification";
 import { useHistory } from "react-router-dom";
 const styles = (theme) => ({
@@ -149,15 +150,19 @@ class LoginTab extends React.Component {
               />
             </Grid>
             <Grid item>
-              <Button
+              <Link href="forgot" color="primary" variant="body2">
+                Forgot password ?
+              </Link>
+              {/* <Button
                 disableFocusRipple
                 disableRipple
                 style={{ textTransform: "none" }}
                 variant="text"
                 color="primary"
+                href="/forgot"
               >
                 Forgot password ?
-              </Button>
+              </Button> */}
             </Grid>
           </Grid>
           <Grid container justify="center" style={{ marginTop: "11px" }}>
