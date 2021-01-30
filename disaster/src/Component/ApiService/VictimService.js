@@ -12,6 +12,14 @@ class VictimService {
     createVictim(victim){
       return axios.post(VICTIMS_REST_API_URL,victim)
     }
+
+    getVictimById(victimId){
+      return axios.get(VICTIMS_REST_API_URL+'/'+ victimId)
+    }
+
+    updateVictim(victim, victimId){
+      return axios.put(VICTIMS_REST_API_URL+'/'+ victimId, victim)
+    }
 }
 
 export default new VictimService()

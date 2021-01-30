@@ -1,13 +1,21 @@
-import React, {useContext} from "react";
+import React, {useContext,useState} from "react";
 import MaterialTable from "material-table";
+import VictimService from "../ApiService/VictimService";
 
 
 export const TableAll = (props) => {
+  const [selectedRow,setSelectedRow] = useState(null)
 
-  const handleSelection = () => {
-    
-    props.data[0].messageTo = props.messageTo;
-    alert(props.data[0].messageTo);
+  const handleSelection = (selectedRow,id) => {
+    var victim = {
+      "messageToVictim": "Lol"
+    }
+    setSelectedRow(selectedRow)
+    VictimService.updateVictim(victim, props.data.length-id).then( res => {
+      console.log(res.data)
+
+    }
+    );
   }
 
   return (
@@ -20,10 +28,19 @@ export const TableAll = (props) => {
           headerStyle: {
             backgroundColor: 'blue',
             color: '#FFF'
+          },
+          rowStyle: rowData => {
+            let selected =
+              selectedRow &&
+              selectedRow.tableData.id === rowData.tableData.id;
+            return {
+              backgroundColor: selected ? "blue" : "#FFF",
+              color: selected ? "#e0dd1f !important" : "#000"
+            };
           }
         }
       }
-      onSelectionChange={(rowData) => handleSelection()}
+      onRowClick={(evt, selectedRow) => handleSelection(selectedRow,selectedRow.tableData.id)}
        />
     </div>
   );
