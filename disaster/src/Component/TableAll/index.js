@@ -13,7 +13,7 @@ export const TableAll = (props) => {
     setSelectedRow(selectedRow)
     VictimService.updateVictim(victim, props.data.length-id).then( res => {
       console.log(res.data)
-
+      console.log("sndjnsjd")
     }
     );
   }

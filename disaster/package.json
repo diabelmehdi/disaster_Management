@@ -17,6 +17,7 @@
     "material-table": "^1.69.2",
     "nodemailer": "^6.4.17",
     "react": "^17.0.1",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^17.0.1",
     "react-hook-google-maps": "0.0.3",
     "react-modal": "^3.12.1",
@@ -48,5 +49,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+    //"proxy": "http://localhost:8080"
+    
   }
 }
