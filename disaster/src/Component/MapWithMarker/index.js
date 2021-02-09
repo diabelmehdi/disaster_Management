@@ -7,7 +7,9 @@ const uluru = { lat: 52.237049, lng: 21.017532 };
 let adress = "Prasowa 29 Warsaw";
 
 export const MapWithMarker = React.memo(function Map() {
-  const { victims, setDataVictims } = useContext(ThemeContext);
+  
+  const {victims} = useContext(ThemeContext);
+  const {sosCases} = useContext(SosContext);
   const { ref, map, google } = useGoogleMaps(
     "AIzaSyBkz_rtiTK4wHl18HUy_BnjmKnMEn4FxRw",
     {
@@ -16,7 +18,6 @@ export const MapWithMarker = React.memo(function Map() {
     }
   );
 
-  // console.log(victims[0].city)
 
   const geocoder = new window.google.maps.Geocoder();
 

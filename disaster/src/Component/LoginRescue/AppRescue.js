@@ -16,8 +16,31 @@ export const SosContext = React.createContext(
     setSosCases: () => {}
   }
 );
+export const MessageContext = React.createContext(
+  {
+    messageToThePerson:"Hey",
+    setMessage: () => {}
+  }
+);
+
+// constructor(props) {
+//   super(props);
+//   this.state = { message: "someMessage" };
+//   this.changeMessage = this.changeMessage.bind(this);
+// }
+// changeMessage = message => {
+//   this.setState({ message });
+// };
 
 function AppRescue() {
+
+
+   const [message, setMessage] = useState("Hey you");
+
+  function setMessageData(message){
+    setMessage(message);
+  }
+
   const [victims, setVictims] = useState([]);
 
   function setDataVictims(table){
@@ -28,7 +51,10 @@ function AppRescue() {
   function setDataSOS(table){
     setSosCases(table);
   }
+
+
   return (
+    <MessageContext.Provider value ={{message,setMessageData}}>
     <ThemeContext.Provider value={{victims, setDataVictims}}>
     <SosContext.Provider value = {{sosCases,setSosCases}}>
       <div>
@@ -51,6 +77,7 @@ function AppRescue() {
       </div>
       </SosContext.Provider>
     </ThemeContext.Provider>
+    </MessageContext.Provider>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Style.css";
-import { TableAll } from "src/Component/TableAll";
+import {TableAll} from "src/Component/TableAll";
 import allData from "src/Component/TableAll/allData";
 import allColumns from "src/Component/TableAll/allColumns";
 import victimsColumns from "src/Component/TableAll/victimsColumns";
@@ -11,7 +11,10 @@ import { SosContext, ThemeContext } from "src/Component/LoginRescue/AppRescue";
 
 export const ButtonTable = (props) => {
   const [buttonClicked, setButtonClicked] = useState("Type of Emergency");
-  const [tableName, setTableName] = useState(allData);
+  const [tableName, setTableName] = useState({
+    table: allData,
+    typeOfData: ""
+  });
   const [sosTable, setSosTable] = useState([]);
   const [victimTable, setVictimTable] = useState([]);
   const [tableColumns, setTableColumns] = useState(allColumns);
@@ -22,25 +25,20 @@ export const ButtonTable = (props) => {
 
   const buttonPressed = (e) => {
     switch (e.target.name) {
-      case "All":
-        setButtonClicked("All");
-        setTableColumns(allColumns);
-        setTableName(allData);
-        break;
       case "Victims":
         setButtonClicked("Victims");
         setTableColumns(victimsColumns);
-        setTableName(victimTable);
+        setTableName({table:victimTable, typeOfData: "Victims"});
         break;
       case "SOS":
         setButtonClicked("SOS");
         setTableColumns(sosColumns);
-        setTableName(sosTable);
+        setTableName({table:sosTable, typeOfData: "SOS"});
         break;
       default:
         setButtonClicked("All");
         setTableColumns(allColumns);
-        setTableName(allData);
+        setTableName({table:allData, typeOfData: "All"});
     }
   };
   useEffect(() => {
@@ -53,6 +51,7 @@ export const ButtonTable = (props) => {
     SosService.getSos().then((response) => {
       setSosTable(response.data);
       setSosCases(response.data);
+    
     });
   }, []);
 
@@ -71,9 +70,10 @@ export const ButtonTable = (props) => {
       </div>
       <TableAll
         isClicked={buttonClicked}
-        data={tableName}
+        data={tableName.table}
         columns={tableColumns}
         messageTo={props.messageTo}
+        dataType={tableName.typeOfData}
       />
     </div>
   );
