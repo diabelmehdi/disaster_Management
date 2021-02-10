@@ -1,11 +1,12 @@
 import axios from 'axios'
+import authHeader from './AuthHeader';
 
-const SOS_REST_API_URL = 'http://localhost:8081/api/sos';
+const SOS_REST_API_URL = 'http://localhost:8080/api/sos';
 
 
 class SosService {
     getSos(){
-      return axios.get(SOS_REST_API_URL)
+      return axios.get(SOS_REST_API_URL,{ headers: authHeader() })
     }
 
     createSos(sos){
