@@ -28,14 +28,14 @@
   }
 
   .left {
-    background: rgb(116, 59, 59);
+    background: blue;
     display: inline-block;
     width: 50%;
     
     
   }
   .right{
-    background: rgb(116, 59, 59);
+    background: blue;
     display: inline-block;
     width: 50%;
     padding: 20px;
@@ -43,30 +43,4 @@
     
   }
 
- /* Add a black background color to the top navigation */
-.topnav {
-  background-color: rgb(116, 59, 59);
-  overflow: hidden;
-  margin-bottom: 50px;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  border-bottom: 3px solid transparent;
-}
-
-.topnav a:hover {
-  border-bottom: 3px solid white;
-}
-
-.topnav a.active {
-  border-bottom: 3px solid white;
-}
   

@@ -28,6 +28,7 @@
   
   color: white;
   font-size: 20px;
+  margin-left: 15%;
   
   
   
@@ -61,7 +62,9 @@
   border-radius: 20px;
   cursor: pointer;
   width: 50%;
-  left: 50%;
+  margin-left: 10%;
+  
+  
   
   
   opacity: 0.8;
