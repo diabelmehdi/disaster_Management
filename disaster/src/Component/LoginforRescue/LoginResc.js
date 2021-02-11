@@ -13,6 +13,8 @@ import Modal from "@material-ui/core/Modal";
 import SignInRescue from "src/Component/SignInRescue/rlogin";
 import { InputForm } from "src/Component/Notification";
 import { useHistory } from "react-router-dom";
+import AuthService from "src/Component/ApiService/AuthService";
+import Alert from "@material-ui/lab/Alert";
 
 const styles = (theme) => ({
   margin: {
@@ -55,12 +57,27 @@ class LoginTab extends React.Component {
     if (this.validate()) {
       console.log(this.state);
 
-      let input = {};
-      input["Matriculation Number"] = "";
-      input["password"] = "";
-      this.setState({ input: input });
-      window.location.href = "/LoginRescue";
-      alert("Registration successful");
+      var un = this.state.input["Matriculation Number"];
+      var pwd = this.state.input.password;
+
+      AuthService.loginUser(un, pwd, "/LoginRescue").catch((error) => {
+        if (error == 401) {
+          this.setState({
+            UnauthorisedError: (
+              <Alert variant="filled" severity="error">
+                You are not authorized
+              </Alert>
+            ),
+          });
+        }
+      });
+
+      // let input = {};
+      // input["Matriculation Number"] = "";
+      // input["password"] = "";
+      // this.setState({ input: input });
+      // // window.location.href = "/LoginRescue";
+      // alert("Registration successful");
     }
   }
 
@@ -68,6 +85,9 @@ class LoginTab extends React.Component {
     let input = this.state.input;
     let errors = {};
     let isValid = true;
+    this.setState({
+      UnauthorisedError: null,
+    });
 
     if (!input["Matriculation Number"]) {
       isValid = false;
@@ -136,6 +156,8 @@ class LoginTab extends React.Component {
                 <div className="text-danger">{this.state.errors.password}</div>
               </Grid>
             </Grid>
+            <br />
+            {this.state.UnauthorisedError}
             <Grid container alignItems="center" justify="space-between">
               <Grid item>
                 <FormControlLabel
@@ -175,7 +197,6 @@ class LoginTab extends React.Component {
                 >
                   Sign In
                 </Button>
-
                 <Modal
                   open={this.state.openModal}
                   onClose={() => this.manageModal(false)}
