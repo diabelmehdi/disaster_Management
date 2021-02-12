@@ -1,7 +1,7 @@
 import axios from 'axios'
 import authHeader from './AuthHeader';
 
-const SOS_REST_API_URL = 'http://localhost:8080/api/sos';
+const SOS_REST_API_URL = 'http://localhost:8080/api/sos/';
 
 
 class SosService {

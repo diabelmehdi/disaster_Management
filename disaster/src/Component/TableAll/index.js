@@ -33,7 +33,7 @@ export const TableAll = (props) => {
           {
             search: false,
             paging: false,
-            selection: true,
+            selection: props.selectionAllowed,
             headerStyle: {
               backgroundColor: 'blue',
               color: '#FFF'

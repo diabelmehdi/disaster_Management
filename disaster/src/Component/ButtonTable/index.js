@@ -13,7 +13,9 @@ export const ButtonTable = (props) => {
   const [buttonClicked, setButtonClicked] = useState("Type of Emergency");
   const [tableName, setTableName] = useState({
     table: allData,
-    typeOfData: ""
+    typeOfData: "",
+    selectionAllowed: true
+
   });
   const [sosTable, setSosTable] = useState([]);
   const [victimTable, setVictimTable] = useState([]);
@@ -28,17 +30,17 @@ export const ButtonTable = (props) => {
       case "Victims":
         setButtonClicked("Victims");
         setTableColumns(victimsColumns);
-        setTableName({table:victimTable, typeOfData: "Victims"});
+        setTableName({table:victimTable, typeOfData: "Victims",selectionAllowed:true});
         break;
       case "SOS":
         setButtonClicked("SOS");
         setTableColumns(sosColumns);
-        setTableName({table:sosTable, typeOfData: "SOS"});
+        setTableName({table:sosTable, typeOfData: "SOS",selectionAllowed:true});
         break;
       default:
         setButtonClicked("All");
         setTableColumns(allColumns);
-        setTableName({table:allData, typeOfData: "All"});
+        setTableName({table:allData, typeOfData: "All",selectionAllowed:false});
     }
   };
   useEffect(() => {
@@ -74,6 +76,7 @@ export const ButtonTable = (props) => {
         columns={tableColumns}
         messageTo={props.messageTo}
         dataType={tableName.typeOfData}
+        selectionAllowed={tableName.selectionAllowed}
       />
     </div>
   );
