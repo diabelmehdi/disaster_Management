@@ -1,6 +1,7 @@
 const allColumns = [
-    { title: "Report", field: "report" },
-    { title0: "Date", field: "date" }
+    { title: "Report", field: "type" },
+    { title: "Date", field: "date" },
+    {title: "Name", field: "name"}
 ];
 
 export default allColumns;

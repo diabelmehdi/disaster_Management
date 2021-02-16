@@ -17,9 +17,11 @@ export const ButtonTable = (props) => {
     selectionAllowed: true
 
   });
+
   const [sosTable, setSosTable] = useState([]);
   const [victimTable, setVictimTable] = useState([]);
   const [tableColumns, setTableColumns] = useState(allColumns);
+  const [theArray, setTheArray] = useState([]);
 
   const {setDataVictims} = useContext(ThemeContext);
   const {setSosCases} = useContext(SosContext);
@@ -40,19 +42,24 @@ export const ButtonTable = (props) => {
       default:
         setButtonClicked("All");
         setTableColumns(allColumns);
-        setTableName({table:allData, typeOfData: "All",selectionAllowed:false});
+        setTableName({table:theArray, typeOfData: "All",selectionAllowed:false});
     }
   };
   useEffect(() => {
     VictimService.getVictims().then((response) => {
       setVictimTable(response.data);
       setDataVictims(response.data);
+      setTheArray(theArray => [...theArray, ...response.data])
+      
       
     });
 
     SosService.getSos().then((response) => {
       setSosTable(response.data);
       setSosCases(response.data);
+      setTheArray(theArray => [...theArray, ...response.data])
+      console.log(theArray)
+      
     
     });
   }, []);
