@@ -10,7 +10,7 @@ class SosService {
     }
 
     createSos(sos){
-      return axios.post(SOS_REST_API_URL,sos)
+      return axios.post(SOS_REST_API_URL,sos,{ headers: authHeader() })
     }
 
     getSOSById(sosId){

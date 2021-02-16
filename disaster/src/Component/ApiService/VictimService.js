@@ -11,7 +11,7 @@ class VictimService {
     }
 
     createVictim(victim){
-      return axios.post(VICTIMS_REST_API_URL,victim)
+      return axios.post(VICTIMS_REST_API_URL,victim,{ headers: authHeader() })
     }
 
     getVictimById(victimId){
