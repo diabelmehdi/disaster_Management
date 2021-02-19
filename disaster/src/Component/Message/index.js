@@ -1,16 +1,21 @@
 import React, { useState, useContext} from "react";
 import "./Style.css";
 import { MessageContext } from "src/Component/LoginRescue/AppRescue";
+import swal from 'sweetalert';
 
 
 export const Message = () => {
   const { message,setMessageData } = useContext(MessageContext);
-  const [mess,setMess] = useState("hej")
+  const [mess,setMess] = useState("")
 
   
   const hangleChange = () => {
     setMessageData(mess);
-    alert(message)
+    setMess("")
+    
+    swal("Success","We saved your message! Choose the receiver of your message now!","success")
+
+    
   }
 
 
@@ -23,6 +28,7 @@ export const Message = () => {
         <textarea
           id="textField"
           type="message"
+          value={mess}
           placeholder="Type message.."
           name="msg"
           onChange={(e) => setMess(e.target.value)}

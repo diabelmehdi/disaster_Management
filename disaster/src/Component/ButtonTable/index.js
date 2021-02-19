@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Style.css";
 import {TableAll} from "src/Component/TableAll";
-import allData from "src/Component/TableAll/allData";
 import allColumns from "src/Component/TableAll/allColumns";
 import victimsColumns from "src/Component/TableAll/victimsColumns";
 import sosColumns from "src/Component/TableAll/sosColumns";
@@ -12,7 +11,7 @@ import { SosContext, ThemeContext } from "src/Component/LoginRescue/AppRescue";
 export const ButtonTable = (props) => {
   const [buttonClicked, setButtonClicked] = useState("Type of Emergency");
   const [tableName, setTableName] = useState({
-    table: allData,
+    table: [],
     typeOfData: "",
     selectionAllowed: true
 
@@ -37,7 +36,7 @@ export const ButtonTable = (props) => {
       case "SOS":
         setButtonClicked("SOS");
         setTableColumns(sosColumns);
-        setTableName({table:sosTable, typeOfData: "SOS",selectionAllowed:true});
+        setTableName({table:sosTable, typeOfData: "SOS",selectionAllowed:false});
         break;
       default:
         setButtonClicked("All");
