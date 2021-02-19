@@ -1,20 +1,18 @@
-import axios from 'axios'
-import authHeader from './AuthHeader';
+import axios from "axios";
+import authHeader from "./AuthHeader";
 
-const VICTIMS_REST_API_URL = 'http://localhost:8080/api/victims';
-
+const VICTIMS_REST_API_URL = "http://localhost:8080/api/victims";
 
 class VictimService {
+  getVictims() {
+    return axios.get(VICTIMS_REST_API_URL, { headers: authHeader() });
+  }
 
-    getVictims(){
-      return axios.get(VICTIMS_REST_API_URL,{ headers: authHeader() })
-    }
+  createVictim(victim) {
+    return axios.post(VICTIMS_REST_API_URL, victim, { headers: authHeader() });
+  }
 
-    createVictim(victim){
-      return axios.post(VICTIMS_REST_API_URL,victim,{ headers: authHeader() })
-    }
-
-    getVictimById(victimUsername){
+    getVictimByUsername(victimUsername){
       return axios.get(VICTIMS_REST_API_URL+'/'+ victimUsername,{ headers: authHeader() })
     }
 
@@ -23,4 +21,4 @@ class VictimService {
     }
 }
 
-export default new VictimService()
+export default new VictimService();
