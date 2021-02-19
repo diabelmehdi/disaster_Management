@@ -1,55 +1,48 @@
 import React, { useContext, useState } from "react";
+import swal from 'sweetalert';
+import MessageIcon from '@material-ui/icons/Message';
 import MaterialTable from "material-table";
 import VictimService from "../ApiService/VictimService";
-import SosService from "../ApiService/SosService";
 import { MessageContext } from "../LoginRescue/AppRescue";
 
 export const TableAll = (props) => {
-  const [selectedRow, setSelectedRow] = useState(null)
   const {message} = useContext(MessageContext)
 
-  const handleSelection = (selectedRow, id) => {
-    
+  const handleSelection = (username) => {
 
-    setSelectedRow(selectedRow)
-    if (props.dataType === "Victims") {
       var victim = {
         "messageToVictim": message
       }
-      VictimService.updateVictim(victim, props.data.length - id).then(res => {
+
+      VictimService.updateVictim(victim,username).then(res => {
+        swal("Success!", `Your message "${message}" was sent to the user ${username}!`, "success");
+        
       });
-    } else if (props.dataType === "SOS") {
-      var sos = {
-        "messageToSOS": message
-      }
-      SosService.updateSOS(sos, props.data.length - id).then(res => {
-      });
-    }
   }
 
     return (
       <div>
-        <MaterialTable title={props.messageTo} data={props.data} columns={props.columns} options={
+        <MaterialTable title={props.dataType} data={props.data} columns={props.columns} options={
           {
             search: false,
             paging: false,
-            selection: props.selectionAllowed,
+            actions: props.selectionAllowed,
+            selection: false,
             headerStyle: {
               backgroundColor: 'blue',
               color: '#FFF'
-            },
-            rowStyle: rowData => {
-              let selected =
-                selectedRow &&
-                selectedRow.tableData.id === rowData.tableData.id;
-              return {
-                backgroundColor: selected ? "blue" : "#FFF",
-                color: selected ? "#e0dd1f !important" : "#000"
-              };
             }
           }
         }
-          onRowClick={(evt, selectedRow) => handleSelection(selectedRow, selectedRow.tableData.id)}
+        actions={[
+        { disabled: props.dataType == "All" || props.dataType == "SOS" , 
+          icon: () => <MessageIcon />,
+          tooltip: 'Send Message',
+          isFreeAction: false,
+          onClick: (event, rowData) => handleSelection(rowData.username)
+        }
+      ]}
+          
         />
       </div>
     );

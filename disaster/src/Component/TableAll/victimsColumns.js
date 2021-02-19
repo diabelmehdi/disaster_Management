@@ -1,5 +1,6 @@
 const victimsColumns = [
     { title: "Name", field: "name"},
+    {title:"Username",field: "username"},
     { title: "E-mail", field: "email"},
     { title: "City", field: "city" },
     { title: "Street", field: "street"},

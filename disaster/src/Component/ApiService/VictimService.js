@@ -14,12 +14,12 @@ class VictimService {
       return axios.post(VICTIMS_REST_API_URL,victim,{ headers: authHeader() })
     }
 
-    getVictimById(victimId){
-      return axios.get(VICTIMS_REST_API_URL+'/'+ victimId)
+    getVictimById(victimUsername){
+      return axios.get(VICTIMS_REST_API_URL+'/'+ victimUsername,{ headers: authHeader() })
     }
 
-    updateVictim(victim, victimId){
-      return axios.put(VICTIMS_REST_API_URL+'/'+ victimId, victim)
+    updateVictim(victim, victimUsername){
+      return axios.put(VICTIMS_REST_API_URL+'/'+ victimUsername, victim, { headers: authHeader()})
     }
 }
 
