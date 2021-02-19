@@ -74,7 +74,7 @@ const InputForm = () => {
         <Box borderBottom={1} m={3} />
         <Form>
           <FormGroup>
-            <Label for="name">Name</Label>
+            <Label for="name">UserName</Label>
             <Input
               name="name"
               onChange={handleInputChange}

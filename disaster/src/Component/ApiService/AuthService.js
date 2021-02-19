@@ -30,17 +30,6 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
-  register(usernameValue1, passwordValue1, pathToRedirect1) {
-    return axios
-      .post(AUTH_REST_API_URL + "/register", {
-        username: usernameValue1,
-        password: passwordValue1,
-      })
-      .then(() => {
-        window.location.href = pathToRedirect1;
-      });
-  }
-
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));
   }
