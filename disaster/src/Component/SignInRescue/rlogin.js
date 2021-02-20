@@ -298,11 +298,6 @@ class SignInRescue extends React.Component {
                   id="filled-basic"
                   variant="filled"
                 />
-                {/* <TextField
-                  id="filled-basic"
-                  label="Description"
-                  variant="filled"
-                /> */}
               </form>
             </Grid>
             <Button
