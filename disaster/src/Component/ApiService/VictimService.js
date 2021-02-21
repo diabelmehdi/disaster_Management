@@ -5,7 +5,7 @@ const VICTIMS_REST_API_URL = "http://localhost:8080/api";
 
 class VictimService {
   getVictims() {
-    return axios.get(VICTIMS_REST_API_URL, { headers: authHeader() });
+    return axios.get(VICTIMS_REST_API_URL+ "/victims", { headers: authHeader() });
   }
 
   createVictim(
@@ -43,12 +43,12 @@ class VictimService {
       });
   }
 
-  getVictimById(victimId) {
-    return axios.get(VICTIMS_REST_API_URL + "/" + victimId);
+  getVictimByUsername(victimUsername) {
+    return axios.get(VICTIMS_REST_API_URL + "/victims/" + victimUsername,{ headers: authHeader() });
   }
 
-  updateVictim(victim, victimId) {
-    return axios.put(VICTIMS_REST_API_URL + "/" + victimId, victim);
+  updateVictim(victim, victimUsername) {
+    return axios.put(VICTIMS_REST_API_URL + "/victims/" + victimUsername, victim,{ headers: authHeader() });
   }
 }
 
