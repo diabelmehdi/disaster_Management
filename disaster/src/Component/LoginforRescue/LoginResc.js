@@ -15,7 +15,7 @@ import { InputForm } from "src/Component/Notification";
 import { useHistory } from "react-router-dom";
 import AuthService from "src/Component/ApiService/AuthService";
 import Alert from "@material-ui/lab/Alert";
-
+import Link from "@material-ui/core/Link";
 const styles = (theme) => ({
   margin: {
     margin: theme.spacing.unit * 2,
@@ -25,7 +25,7 @@ const styles = (theme) => ({
   },
 });
 
-class LoginTab extends React.Component {
+class LoginRTab extends React.Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -71,13 +71,6 @@ class LoginTab extends React.Component {
           });
         }
       });
-
-      // let input = {};
-      // input["Matriculation Number"] = "";
-      // input["password"] = "";
-      // this.setState({ input: input });
-      // // window.location.href = "/LoginRescue";
-      // alert("Registration successful");
     }
   }
 
@@ -166,15 +159,9 @@ class LoginTab extends React.Component {
                 />
               </Grid>
               <Grid item>
-                <Button
-                  disableFocusRipple
-                  disableRipple
-                  style={{ textTransform: "none" }}
-                  variant="text"
-                  color="primary"
-                >
+                <Link href="forgot" color="primary" variant="body2">
                   Forgot password ?
-                </Button>
+                </Link>
               </Grid>
             </Grid>
             <Grid container justify="center" style={{ marginTop: "11px" }}>
@@ -212,4 +199,4 @@ class LoginTab extends React.Component {
   }
 }
 
-export default withStyles(styles)(LoginTab);
+export default withStyles(styles)(LoginRTab);

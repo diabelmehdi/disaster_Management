@@ -19,6 +19,7 @@ import Container from "@material-ui/core/Container";
 import Login from "src/Component/LoginVictim/Login";
 import "date-fns";
 import { useHistory } from "react-router-dom";
+import VictimService from "../ApiService/VictimService";
 
 const styles = (theme) => ({
   paper: {
@@ -72,15 +73,37 @@ class SignInVictim extends React.Component {
       console.log(this.state);
 
       let input = {};
-      input["First Name"] = "";
-      input["Last Name"] = "";
-      input["User Name"] = "";
-      input["Blood type"] = "";
-      input["Phone Number"] = "";
-      input["password"] = "";
+      var un2 = (this.state.input["username"] = "");
+      var nm2 = (this.state.input["name"] = "");
+      var eml2 = (this.state.input["email"] = "");
+      var nstr2 = (this.state.input["nrStreet"] = "");
+      var str2 = (this.state.input["street"] = "");
+      var city2 = (this.state.input["city"] = "");
+      var decp2 = (this.state.input["description"] = "");
+      var dofb2 = (this.state.input["dateOfBirth"] = "");
+      var alg2 = (this.state.input["allergy"] = "");
+      var blt2 = (this.state.input["bloodType"] = "");
+      var tel2 = (this.state.input["tel"] = "");
+      var pwd2 = (this.state.input["password"] = "");
+
       this.setState({ input: input });
-      window.location.href = "/Login";
-      alert("Registration successful");
+      VictimService.createVictim(
+        un2,
+        nm2,
+        eml2,
+        nstr2,
+        str2,
+        city2,
+        decp2,
+        dofb2,
+        alg2,
+        blt2,
+        tel2,
+        pwd2,
+        "/Login"
+      );
+      // window.location.href = "/Login";
+      // alert("Registration successful");
     }
   }
 
@@ -90,31 +113,31 @@ class SignInVictim extends React.Component {
     let errors = {};
     let isValid = true;
 
-    if (!input["First Name"]) {
+    if (!input["username"]) {
       isValid = false;
       console.log("test");
-      errors["First Name"] = "Please enter your First Name.";
+      errors["username"] = "Please enter your User Name.";
     }
 
-    if (!input["Last Name"]) {
+    if (!input["name"]) {
       isValid = false;
       console.log("test");
-      errors["Last Name"] = "Please enter your Last Name.";
+      errors["name"] = "Please enter your Full Name.";
     }
-    if (!input["User Name"]) {
+    if (!input["allergy"]) {
       isValid = false;
       console.log("test");
-      errors["User Name"] = "Please enter your User Name.";
+      errors["allergy"] = "Please enter your Type of allergy.";
     }
-    if (!input["Blood type"]) {
+    if (!input["bloodType"]) {
       isValid = false;
       console.log("test");
-      errors["Blood type"] = "Please enter your Blood type.";
+      errors["bloodType"] = "Please enter your Blood type.";
     }
-    if (!input["Phone Number"]) {
+    if (!input["tel"]) {
       isValid = false;
       console.log("test");
-      errors["Phone Number"] = "Please enter your Phone Number.";
+      errors["tel"] = "Please enter your Phone Number.";
     }
 
     if (!input["password"]) {
@@ -146,50 +169,44 @@ class SignInVictim extends React.Component {
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="First Name"
-                value={this.state.input["First Name"]}
+                name="name"
+                value={this.state.input["name"]}
                 onChange={this.handleChange}
                 class="form-control"
-                placeholder="First Name"
-                id="First Name"
+                placeholder="Full Name"
+                id="name"
               />
-              <div className="text-danger">
-                {this.state.errors["First Name"]}
-              </div>
+              <div className="text-danger">{this.state.errors["name"]}</div>
             </Grid>
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Last Name"
-                value={this.state.input["Last Name"]}
-                onChange={this.handleChange}
-                class="form-control"
-                placeholder="Last Name"
-                id="Last Name"
-              />
-              <div className="text-danger">
-                {this.state.errors["Last Name"]}
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <input
-                type="text"
-                name="User Name"
-                value={this.state.input["User Name"]}
+                name="username"
+                value={this.state.input["username"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="User Name"
-                id="User Name"
+                id="username"
               />
-              <div className="text-danger">
-                {this.state.errors["User Name"]}
-              </div>
+              <div className="text-danger">{this.state.errors["username"]}</div>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <input
+                type="text"
+                name="street"
+                value={this.state.input["street"]}
+                onChange={this.handleChange}
+                class="form-control"
+                placeholder="street"
+                id="street"
+              />
+              <div className="text-danger">{this.state.errors["street"]}</div>
             </Grid>
             <Grid item xs={12} sm={6}>
               <form className={classes.container} noValidate>
                 <TextField
-                  id="date"
-                  label="Birthday"
+                  id="dateOfBirth"
+                  label="dateOfBirth"
                   type="date"
                   defaultValue="2021-01-24"
                   className={classes.textField}
@@ -199,80 +216,91 @@ class SignInVictim extends React.Component {
                 />
               </form>
             </Grid>
-            <Grid item xs={12}>
-              <TextField
+            <Grid item xs={12} sm={6}>
+              <input
                 variant="outlined"
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                placeholder="Email Address"
                 name="email"
-                autoComplete="email"
+                class="form-control"
               />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <input
+                type="text"
+                name="nrStreet"
+                value={this.state.input["nrStreet"]}
+                onChange={this.handleChange}
+                class="form-control"
+                placeholder="number street"
+                id="nrStreet"
+              />
+              <div className="text-danger">{this.state.errors["nrStreet"]}</div>
             </Grid>
             <Grid item xs={12}>
               <input
                 type="password"
                 name="password"
-                value={this.state.input.password}
+                value={this.state.input["password"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Enter password"
                 id="password"
               />
-
-              <div className="text-danger">{this.state.errors.password}</div>
+              <div className="text-danger">{this.state.errors["password"]}</div>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
+              <input
+                type="text"
                 variant="outlined"
                 required
                 fullWidth
-                id="Location"
-                label="Location"
-                name="Location"
-                autoComplete="lction"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="Allergy"
-                variant="outlined"
-                required
-                fullWidth
-                id="Allergy"
-                label="Allergy"
-                autoFocus
+                id="city"
+                placeholder="city"
+                name="city"
+                class="form-control"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Blood type"
-                value={this.state.input["Blood type"]}
+                name="allergy"
+                variant="outlined"
+                placeholder="allergy"
+                label="allergy"
+                class="form-control"
+                value={this.state.input["allergy"]}
+                onChange={this.handleChange}
+              />{" "}
+              <div className="text-danger">{this.state.errors["allergy"]}</div>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <input
+                type="text"
+                name="bloodType"
+                value={this.state.input["bloodType"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Blood type"
-                id="Blood type"
+                id="bloodType"
               />
               <div className="text-danger">
-                {this.state.errors["Blood type"]}
+                {this.state.errors["bloodType"]}
               </div>
             </Grid>
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Phone Number"
-                value={this.state.input["Phone Number"]}
+                name="tel"
+                value={this.state.input["tel"]}
                 onChange={this.handleChange}
                 class="form-control"
-                placeholder="Phone Number"
-                id="Phone Number"
+                placeholder="tel"
+                id="tel"
               />
-              <div className="text-danger">
-                {this.state.errors["Phone Number"]}
-              </div>
+              <div className="text-danger">{this.state.errors["tel"]}</div>
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
@@ -282,9 +310,12 @@ class SignInVictim extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <form className={classes.root} noValidate autoComplete="off">
-                <TextField
+                <input
+                  type="text"
+                  name="description"
+                  class="form-control"
+                  placeholder="Description"
                   id="filled-basic"
-                  label="Description"
                   variant="filled"
                 />
               </form>

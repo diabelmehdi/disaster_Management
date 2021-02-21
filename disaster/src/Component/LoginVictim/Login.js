@@ -14,6 +14,9 @@ import SignUp from "src/Component/SignInVictim/llogin";
 import Link from "@material-ui/core/Link";
 import { InputForm } from "src/Component/Notification";
 import { useHistory } from "react-router-dom";
+import AuthService from "src/Component/ApiService/AuthService";
+import Alert from "@material-ui/lab/Alert";
+
 const styles = (theme) => ({
   margin: {
     margin: theme.spacing.unit * 2,
@@ -55,25 +58,31 @@ class LoginTab extends React.Component {
   handleConnection(event) {
     console.log("test1");
     event.preventDefault();
-    // this.props.history.push("/LoginRescue");
     if (this.validateConnForm()) {
       console.log(this.state);
-
-      let input = {};
-      input["User_Name"] = "";
-      input["password1"] = "";
-      this.setState({ input: input });
-      window.location.href = "/Landing";
-      alert("Registration successful");
+      var un1 = this.state.input["User_Name"];
+      var pwd1 = this.state.input["password1"];
+      AuthService.loginUser(un1, pwd1, "/Landing").catch((error) => {
+        if (error == 401) {
+          this.setState({
+            UnauthorisedError: (
+              <Alert variant="filled" severity="error">
+                You are not authorized
+              </Alert>
+            ),
+          });
+        }
+      });
     }
   }
 
   validateConnForm() {
-    console.log("test15");
     let input = this.state.input;
     let errors = {};
     let isValid = true;
-
+    this.setState({
+      UnauthorisedError: null,
+    });
     if (!input["User_Name"]) {
       isValid = false;
       console.log("test");
@@ -153,16 +162,6 @@ class LoginTab extends React.Component {
               <Link href="forgot" color="primary" variant="body2">
                 Forgot password ?
               </Link>
-              {/* <Button
-                disableFocusRipple
-                disableRipple
-                style={{ textTransform: "none" }}
-                variant="text"
-                color="primary"
-                href="/forgot"
-              >
-                Forgot password ?
-              </Button> */}
             </Grid>
           </Grid>
           <Grid container justify="center" style={{ marginTop: "11px" }}>
@@ -170,7 +169,7 @@ class LoginTab extends React.Component {
               variant="outlined"
               color="primary"
               style={{ textTransform: "none" }}
-              onClick={this.handleConnection}
+              type="submit"
             >
               Login
             </Button>
