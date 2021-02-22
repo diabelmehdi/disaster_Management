@@ -55,8 +55,6 @@ class LoginRTab extends React.Component {
     event.preventDefault();
     // this.props.history.push("/LoginRescue");
     if (this.validate()) {
-      console.log(this.state);
-
       var un = this.state.input["Matriculation Number"];
       var pwd = this.state.input.password;
 

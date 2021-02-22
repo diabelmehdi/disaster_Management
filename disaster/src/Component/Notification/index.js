@@ -26,7 +26,7 @@ const InputForm = () => {
   const sendMessage = (e) => {
     Axios({
       method: "POST",
-      url: "http://localhost:5000/send",
+      url: "http://localhost:5000/send", //method send message
       data: { name, message },
       headers: {
         "Content-Type": "application/json",

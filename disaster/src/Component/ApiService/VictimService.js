@@ -28,7 +28,7 @@ class VictimService {
         username: usernameValue1,
         password: passwordValue1,
         email: emailValue1,
-        dateOfBirth: dateOfBirthValue1,
+        birthday: dateOfBirthValue1,
         allergy: allergyValue1,
         bloodType: bloodTypeValue1,
         description: descriptionValue1,

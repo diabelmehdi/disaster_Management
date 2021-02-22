@@ -72,34 +72,33 @@ class SignInVictim extends React.Component {
     if (this.validate()) {
       console.log(this.state);
 
-      let input = {};
-      var un2 = (this.state.input["username"] = "");
-      var nm2 = (this.state.input["name"] = "");
-      var eml2 = (this.state.input["email"] = "");
-      var nstr2 = (this.state.input["nrStreet"] = "");
-      var str2 = (this.state.input["street"] = "");
-      var city2 = (this.state.input["city"] = "");
-      var decp2 = (this.state.input["description"] = "");
-      var dofb2 = (this.state.input["dateOfBirth"] = "");
-      var alg2 = (this.state.input["allergy"] = "");
-      var blt2 = (this.state.input["bloodType"] = "");
-      var tel2 = (this.state.input["tel"] = "");
-      var pwd2 = (this.state.input["password"] = "");
+      var un2 = this.state.input["username"];
+      var nm2 = this.state.input["name"];
+      var eml2 = this.state.input["email"];
+      var nstr2 = this.state.input["nrStreet"];
+      var str2 = this.state.input["street"];
+      var city2 = this.state.input["city"];
+      var decp2 = this.state.input["description"];
+      var dofb2 = this.state.input["dateOfBirth"];
+      var alg2 = this.state.input["allergy"];
+      var blt2 = this.state.input["bloodType"];
+      var tel2 = this.state.input["tel"];
+      var pwd2 = this.state.input["password"];
 
-      this.setState({ input: input });
+      // this.setState({ input: {} });
       VictimService.createVictim(
         un2,
+        pwd2,
         nm2,
         eml2,
-        nstr2,
-        str2,
-        city2,
-        decp2,
         dofb2,
         alg2,
         blt2,
+        decp2,
         tel2,
-        pwd2,
+        nstr2,
+        str2,
+        city2,
         "/Login"
       );
       // window.location.href = "/Login";
@@ -110,6 +109,7 @@ class SignInVictim extends React.Component {
   validate() {
     console.log("test16");
     let input = this.state.input;
+    console.log(input);
     let errors = {};
     let isValid = true;
 
@@ -224,6 +224,8 @@ class SignInVictim extends React.Component {
                 id="email"
                 placeholder="Email Address"
                 name="email"
+                value={this.state.input["email"]}
+                onChange={this.handleChange}
                 class="form-control"
               />
             </Grid>
