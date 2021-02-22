@@ -68,11 +68,16 @@ class SOS extends React.Component {
   }
 
   componentDidMount()  {
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    
     navigator.geolocation.getCurrentPosition(function(position) {
+
       let sos = {
          "latitude": position.coords.latitude,
          "longtitude": position.coords.longitude,
-         "type": "SOS"
+         "type": "SOS",
+         "date": date
       }
       SosService.createSos(sos).then((response) => {
       });
