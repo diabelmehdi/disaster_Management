@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import SosService from "src/Component/ApiService/SosService";
 
 import "./Style.css";
 
@@ -31,7 +32,11 @@ class Timer extends React.Component {
   }
 }
 
+
+
 class StartButton extends React.Component {
+
+
   render() {
     return (
       <div style={{ marginLeft: 130 }}>
@@ -60,6 +65,18 @@ class SOS extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.startCountDown = this.startCountDown.bind(this);
     this.tick = this.tick.bind(this);
+  }
+
+  componentDidMount()  {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      let sos = {
+         "latitude": position.coords.latitude,
+         "longtitude": position.coords.longitude,
+         "type": "SOS"
+      }
+      SosService.createSos(sos).then((response) => {
+      });
+    });
   }
 
   handleChange(event) {
