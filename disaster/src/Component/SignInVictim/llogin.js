@@ -58,16 +58,20 @@ class SignInVictim extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
+    console.log(event);
     let input = this.state.input;
-    input[event.target.name] = event.target.value;
-
+    if (event.target.name != "check") {
+      input[event.target.name] = event.target.value;
+    } else {
+      input[event.target.name] = event.target.checked;
+    }
     this.setState({
       input,
     });
   }
 
   handleSubmit(event) {
-    console.log("test2");
+    console.log(event);
     event.preventDefault();
     if (this.validate()) {
       console.log(this.state);
@@ -88,17 +92,17 @@ class SignInVictim extends React.Component {
       // this.setState({ input: {} });
       VictimService.createVictim(
         un2,
-        pwd2,
         nm2,
         eml2,
-        dofb2,
-        alg2,
-        blt2,
-        decp2,
-        tel2,
         nstr2,
         str2,
         city2,
+        decp2,
+        dofb2,
+        alg2,
+        blt2,
+        tel2,
+        pwd2,
         "/Login"
       );
       // window.location.href = "/Login";
@@ -112,7 +116,10 @@ class SignInVictim extends React.Component {
     console.log(input);
     let errors = {};
     let isValid = true;
-
+    if (!input["check"]) {
+      isValid = false;
+      errors["check"] = "please agree to the policy";
+    }
     if (!input["username"]) {
       isValid = false;
       console.log("test");
@@ -144,7 +151,10 @@ class SignInVictim extends React.Component {
       isValid = false;
       errors["password"] = "Please enter your password.";
     }
-
+    if (!input["dateOfBirth"]) {
+      isValid = false;
+      errors["dateOfBirth"] = "Please enter your date Of Birth.";
+    }
     this.setState({
       errors: errors,
     });
@@ -203,18 +213,21 @@ class SignInVictim extends React.Component {
               <div className="text-danger">{this.state.errors["street"]}</div>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <form className={classes.container} noValidate>
-                <TextField
-                  id="dateOfBirth"
-                  label="dateOfBirth"
-                  type="date"
-                  defaultValue="2021-01-24"
-                  className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </form>
+              <TextField
+                id="dateOfBirth"
+                label="dateOfBirth"
+                type="date"
+                value={this.state.input["dateOfBirth"]}
+                onChange={this.handleChange}
+                className={classes.textField}
+                name="dateOfBirth"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <div className="text-danger">
+                {this.state.errors["dateOfBirth"]}
+              </div>
             </Grid>
             <Grid item xs={12} sm={6}>
               <input
@@ -261,6 +274,8 @@ class SignInVictim extends React.Component {
                 fullWidth
                 id="city"
                 placeholder="city"
+                value={this.state.input["city"]}
+                onChange={this.handleChange}
                 name="city"
                 class="form-control"
               />
@@ -306,9 +321,17 @@ class SignInVictim extends React.Component {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={
+                  <Checkbox
+                    onChange={this.handleChange}
+                    checked={this.state.input["check"]}
+                    color="primary"
+                    name="check"
+                  />
+                }
                 label="I Agree to the Policy"
               />
+              <div className="text-danger">{this.state.errors["check"]}</div>
             </Grid>
             <Grid item xs={12}>
               <form className={classes.root} noValidate autoComplete="off">
@@ -317,6 +340,8 @@ class SignInVictim extends React.Component {
                   name="description"
                   class="form-control"
                   placeholder="Description"
+                  value={this.state.input["description"]}
+                  onChange={this.handleChange}
                   id="filled-basic"
                   variant="filled"
                 />
