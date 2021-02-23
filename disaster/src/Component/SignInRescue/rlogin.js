@@ -74,8 +74,8 @@ class SignInRescue extends React.Component {
 
       let input = {};
       var nm1 = this.state.input["username"];
-      var un1 = this.state.input["Matriculation Number"];
       var Bird1 = this.state.input["birthday"];
+      var name = this.state.input["fullName"];
       var age1 = this.state.input["age"];
       var Prf1 = this.state.input["profession"];
       var dpr1 = this.state.input["department"];
@@ -86,17 +86,17 @@ class SignInRescue extends React.Component {
 
       this.setState({ input: input });
       RescueHelperService.createRescueHelper(
-        un1,
-        pwd1,
         nm1,
+        pwd1,
+        name,
+        eml1,
         Bird1,
         age1,
-        Prf1,
         dpr1,
         dec1,
-        eml1,
         tel1,
-        "/LoginResc"
+        Prf1,
+       "/LoginResc"
       );
       // window.location.href = "/LoginResc";
       // alert("Registration successful");
@@ -109,23 +109,23 @@ class SignInRescue extends React.Component {
     let errors = {};
     let isValid = true;
 
-    if (!input["Full Name"]) {
+    if (!input["fullName"]) {
       isValid = false;
       console.log("test");
       errors["Full Name"] = "Please enter your Full Name.";
     }
-    if (!input["Matriculation Number"]) {
+    if (!input["username"]) {
       isValid = false;
       console.log("test");
       errors["Matriculation Number"] =
         "Please enter your Matriculation Number.";
     }
-    if (!input["Profession"]) {
+    if (!input["profession"]) {
       isValid = false;
       console.log("test");
       errors["Profession"] = "Please enter your Profession.";
     }
-    if (!input["Phone Number"]) {
+    if (!input["phoneNumber"]) {
       isValid = false;
       console.log("test");
       errors["Phone Number"] = "Please enter your Phone Number.";
@@ -160,8 +160,8 @@ class SignInRescue extends React.Component {
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Full Name"
-                value={this.state.input["Full Name"]}
+                name="fullName"
+                value={this.state.input["fullName"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Full Name"
@@ -176,8 +176,8 @@ class SignInRescue extends React.Component {
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Matriculation Number"
-                value={this.state.input["Matriculation Number"]}
+                name="username"
+                value={this.state.input["username"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Matriculation Number"
@@ -193,6 +193,8 @@ class SignInRescue extends React.Component {
                   id="date"
                   label="Birthday"
                   type="date"
+                  name="birthday"
+                  value={this.state.input["birthday"]}
                   defaultValue="2021-01-24"
                   className={classes.textField}
                   InputLabelProps={{
@@ -207,6 +209,8 @@ class SignInRescue extends React.Component {
                 required
                 fullWidth
                 id="email"
+                value = {this.state.input["email"]}
+                onChange={this.handleChange}
                 label="Email Address"
                 name="email"
                 autoComplete="email"
@@ -230,6 +234,8 @@ class SignInRescue extends React.Component {
                 variant="outlined"
                 required
                 fullWidth
+                value = {this.state.input["department"]}
+                onChange={this.handleChange}
                 id="department"
                 label="department"
                 name="department"
@@ -239,10 +245,12 @@ class SignInRescue extends React.Component {
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
-                name="Age"
+                name="age"
                 variant="outlined"
                 required
                 fullWidth
+                value = {this.state.input["age"]}
+                onChange={this.handleChange}
                 id="Age"
                 label="Age"
                 autoFocus
@@ -251,8 +259,8 @@ class SignInRescue extends React.Component {
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Profession"
-                value={this.state.input["Profession"]}
+                name="profession"
+                value={this.state.input["profession"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Profession"
@@ -267,8 +275,8 @@ class SignInRescue extends React.Component {
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Phone Number"
-                value={this.state.input["Phone Number"]}
+                name="phoneNumber"
+                value={this.state.input["phoneNumber"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Phone Number"
@@ -290,8 +298,8 @@ class SignInRescue extends React.Component {
               <form className={classes.root} noValidate autoComplete="off">
                 <input
                   type="text"
-                  name="Description"
-                  value={this.state.input["Description"]}
+                  name="description"
+                  value={this.state.input["description"]}
                   onChange={this.handleChange}
                   class="form-control"
                   placeholder="Description"

@@ -30,7 +30,7 @@ class RescueHelperService {
         name: fullNameValue1,
       })
       .then(() => {
-        window.location.href = pathToRedirect1;
+       window.location.href = pathToRedirect1;
       });
   }
 }
