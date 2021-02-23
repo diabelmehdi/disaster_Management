@@ -4,30 +4,30 @@ const RESCUE_HELPER_REST_API_URL = "http://localhost:8080/api";
 
 class RescueHelperService {
   createRescueHelper(
-    usernameValue1,
-    passwordValue1,
-    fullNameValue1,
-    emailValue1,
-    BirthdayValue1,
-    ageValue1,
-    departmentValue1,
-    descriptionValue1,
-    phoneNumberValue1,
-    professionValue1,
+    usernameValue2,
+    passwordValue2,
+    fullNameValue2,
+    emailValue2,
+    BirthdayValue2,
+    ageValue2,
+    departmentValue2,
+    descriptionValue2,
+    phoneNumberValue2,
+    professionValue2,
     pathToRedirect1
   ) {
     return axios
       .post(RESCUE_HELPER_REST_API_URL + "/registerRescueHelper", {
-        username: usernameValue1,
-        password: passwordValue1,
-        email: emailValue1,
-        birthday: BirthdayValue1,
-        age: ageValue1,
-        department: departmentValue1,
-        description: descriptionValue1,
-        phoneNumber: phoneNumberValue1,
-        profession: professionValue1,
-        name: fullNameValue1,
+        username: usernameValue2,
+        password: passwordValue2,
+        name: fullNameValue2,
+        email: emailValue2,
+        birthday: BirthdayValue2,
+        age: ageValue2,
+        department: departmentValue2,
+        description: descriptionValue2,
+        phoneNumber: phoneNumberValue2,
+        profession: professionValue2,
       })
       .then(() => {
         window.location.href = pathToRedirect1;

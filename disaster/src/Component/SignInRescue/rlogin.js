@@ -58,9 +58,13 @@ class SignInRescue extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
+    console.log(event);
     let input = this.state.input;
-    input[event.target.name] = event.target.value;
-
+    if (event.target.name != "check") {
+      input[event.target.name] = event.target.value;
+    } else {
+      input[event.target.name] = event.target.checked;
+    }
     this.setState({
       input,
     });
@@ -72,23 +76,21 @@ class SignInRescue extends React.Component {
     if (this.validate()) {
       console.log(this.state);
 
-      let input = {};
-      var nm1 = this.state.input["username"];
       var un1 = this.state.input["Matriculation Number"];
+      var pwd1 = this.state.input["password"];
+      var nm1 = this.state.input["username"];
+      var eml1 = this.state.input["email"];
       var Bird1 = this.state.input["birthday"];
       var age1 = this.state.input["age"];
-      var Prf1 = this.state.input["profession"];
       var dpr1 = this.state.input["department"];
       var dec1 = this.state.input["description"];
-      var eml1 = this.state.input["email"];
       var tel1 = this.state.input["phoneNumber"];
-      var pwd1 = this.state.input["password"];
+      var Prf1 = this.state.input["profession"];
 
-      this.setState({ input: input });
+      // this.setState({ input: input });
       RescueHelperService.createRescueHelper(
-        un1,
-        pwd1,
         nm1,
+        un1,
         Bird1,
         age1,
         Prf1,
@@ -96,6 +98,7 @@ class SignInRescue extends React.Component {
         dec1,
         eml1,
         tel1,
+        pwd1,
         "/LoginResc"
       );
       // window.location.href = "/LoginResc";
@@ -108,11 +111,15 @@ class SignInRescue extends React.Component {
     let input = this.state.input;
     let errors = {};
     let isValid = true;
+    if (!input["check"]) {
+      isValid = false;
+      errors["check"] = "please agree to the policy";
+    }
 
-    if (!input["Full Name"]) {
+    if (!input["username"]) {
       isValid = false;
       console.log("test");
-      errors["Full Name"] = "Please enter your Full Name.";
+      errors["username"] = "Please enter your Full Name.";
     }
     if (!input["Matriculation Number"]) {
       isValid = false;
@@ -120,22 +127,25 @@ class SignInRescue extends React.Component {
       errors["Matriculation Number"] =
         "Please enter your Matriculation Number.";
     }
-    if (!input["Profession"]) {
+    if (!input["profession"]) {
       isValid = false;
       console.log("test");
-      errors["Profession"] = "Please enter your Profession.";
+      errors["profession"] = "Please enter your Profession.";
     }
-    if (!input["Phone Number"]) {
+    if (!input["phoneNumber"]) {
       isValid = false;
       console.log("test");
-      errors["Phone Number"] = "Please enter your Phone Number.";
+      errors["phoneNumber"] = "Please enter your Phone Number.";
     }
 
     if (!input["password"]) {
       isValid = false;
       errors["password"] = "Please enter your password.";
     }
-
+    if (!input["birthday"]) {
+      isValid = false;
+      errors["birthday"] = "Please enter your date Of Birth.";
+    }
     this.setState({
       errors: errors,
     });
@@ -160,16 +170,16 @@ class SignInRescue extends React.Component {
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Full Name"
-                value={this.state.input["Full Name"]}
+                name="username"
+                value={this.state.input["username"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Full Name"
-                id="Full Name"
+                id="username"
               />
               {
                 <div className="text-danger">
-                  {this.state.errors["Full Name"]}
+                  {this.state.errors["username"]}
                 </div>
               }
             </Grid>
@@ -188,113 +198,123 @@ class SignInRescue extends React.Component {
               </div>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <form className={classes.container} noValidate>
-                <TextField
-                  id="date"
-                  label="Birthday"
-                  type="date"
-                  defaultValue="2021-01-24"
-                  className={classes.textField}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </form>
+              <TextField
+                id="date"
+                label="birthday"
+                type="date"
+                value={this.state.input["birthday"]}
+                onChange={this.handleChange}
+                className={classes.textField}
+                name="birthday"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <div className="text-danger">{this.state.errors["birthday"]}</div>
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
+              <input
+                value={this.state.input["email"]}
+                onChange={this.handleChange}
                 id="email"
                 label="Email Address"
                 name="email"
-                autoComplete="email"
+                class="form-control"
+                placeholder="Enter your Email"
               />
             </Grid>
             <Grid item xs={12}>
               <input
                 type="password"
                 name="password"
-                value={this.state.input.password}
+                value={this.state.input["password"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Enter password"
                 id="password"
               />
 
-              <div className="text-danger">{this.state.errors.password}</div>
+              <div className="text-danger">{this.state.errors["password"]}</div>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
+              <input
+                value={this.state.input["department"]}
+                onChange={this.handleChange}
                 id="department"
                 label="department"
                 name="department"
                 autoComplete="department"
+                placeholder="department"
+                class="form-control"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="Age"
+              <input
+                name="age"
                 variant="outlined"
-                required
-                fullWidth
-                id="Age"
+                value={this.state.input["age"]}
+                onChange={this.handleChange}
+                id="age"
                 label="Age"
-                autoFocus
+                placeholder="Age"
+                class="form-control"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Profession"
-                value={this.state.input["Profession"]}
+                name="profession"
+                value={this.state.input["profession"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Profession"
-                id="Profession"
+                id="profession"
               />
               {
                 <div className="text-danger">
-                  {this.state.errors["Profession"]}
+                  {this.state.errors["profession"]}
                 </div>
               }
             </Grid>
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
-                name="Phone Number"
-                value={this.state.input["Phone Number"]}
+                name="phoneNumber"
+                value={this.state.input["phoneNumber"]}
                 onChange={this.handleChange}
                 class="form-control"
                 placeholder="Phone Number"
-                id="Phone Number"
+                id="phoneNumber"
               />
               {
                 <div className="text-danger">
-                  {this.state.errors["Phone Number"]}
+                  {this.state.errors["phoneNumber"]}
                 </div>
               }
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={
+                  <Checkbox
+                    onChange={this.handleChange}
+                    checked={this.state.input["check"]}
+                    color="primary"
+                    name="check"
+                  />
+                }
                 label="I Agree to the Policy"
               />
+              <div className="text-danger">{this.state.errors["check"]}</div>
             </Grid>
             <Grid item xs={12}>
               <form className={classes.root} noValidate autoComplete="off">
                 <input
                   type="text"
-                  name="Description"
-                  value={this.state.input["Description"]}
+                  name="description"
+                  value={this.state.input["description"]}
                   onChange={this.handleChange}
                   class="form-control"
-                  placeholder="Description"
+                  placeholder="description"
                   id="filled-basic"
                   variant="filled"
                 />
