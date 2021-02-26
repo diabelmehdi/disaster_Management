@@ -38,10 +38,10 @@ export const ButtonTable = (props) => {
         setTableColumns(sosColumns);
         setTableName({table:sosTable, typeOfData: "SOS",selectionAllowed:false});
         break;
-      default:
-        setButtonClicked("All");
-        setTableColumns(allColumns);
-        setTableName({table:theArray, typeOfData: "All",selectionAllowed:false});
+    //   default:
+    //     setButtonClicked("All");
+    //     setTableColumns(allColumns);
+    //     setTableName({table:theArray, typeOfData: "All",selectionAllowed:false});
     }
   };
   useEffect(() => {
@@ -68,9 +68,6 @@ export const ButtonTable = (props) => {
       <div class="multi-button">
         <button name="Victims" onClick={buttonPressed}>
           Victims
-        </button>
-        <button name="All" onClick={buttonPressed}>
-          All
         </button>
         <button name="SOS" onClick={buttonPressed}>
           SOS
