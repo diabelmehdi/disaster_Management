@@ -50,6 +50,9 @@ class VictimService {
       headers: authHeader(),
     });
   }
+  deleteVictim(username){
+    return axios.delete(VICTIMS_REST_API_URL+ "/delete/" + username, { headers: authHeader() })
+  }
 
   updateVictim(victim, victimUsername) {
     return axios.put(
