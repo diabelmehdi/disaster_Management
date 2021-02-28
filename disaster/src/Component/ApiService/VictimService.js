@@ -1,5 +1,6 @@
 import axios from "axios";
 import authHeader from "./AuthHeader";
+import swal from 'sweetalert';
 
 const VICTIMS_REST_API_URL = "http://localhost:8080/api";
 
@@ -40,6 +41,8 @@ class VictimService {
       })
       .then(() => {
         window.location.href = pathToRedirect2;
+      }).catch(err=>{
+        swal("Failure","User exists","error")
       });
   }
 
