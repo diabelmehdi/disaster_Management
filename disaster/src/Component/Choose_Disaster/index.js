@@ -8,8 +8,10 @@ import Modal from "@material-ui/core/Modal";
 import Disaster from "src/Component/Notification";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import swal from 'sweetalert';
 
 import "./Style.css";
+import VictimService from "../ApiService/VictimService";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,8 +33,51 @@ export default function AutoGrid() {
   const [modalContent, setModalContent] = React.useState(<div></div>);
   const [modalState, setModalState] = React.useState(false);
 
+  const sendDisaster = (disaster)=>{
+  var victim = {
+    disaster: disaster
+  }
+    swal({
+      text: 'Please fill out your username".',
+      content: "input",
+      button: {
+        text: "OK!",
+        closeModal: false,
+      },
+    })
+    .then(name => {
+      if (!name) throw null;
+      VictimService.updateDisaster(victim,name).then((res)=>{
+        swal.stopLoading();
+        swal.close();
+        setModalState(true)
+      }).catch(err => {
+        if (err) {
+          swal("Oh noes!", "Check your username!", "error");
+        } else {
+          swal.stopLoading();
+          swal.close();
+        }
+      }
+
+    
+    )})
+  
+   
+    // .catch(err => {
+    //   if (err) {
+    //     swal("Oh noes!", "Check your username!", "error");
+    //   } else {
+    //     swal.stopLoading();
+    //     swal.close();
+    //   }
+    // });
+    
+  }
+
   const openModal = (disaster) => {
     console.log(disaster);
+    sendDisaster(disaster)
     switch (disaster) {
       case "HandWashing":
         setModalContent(<Disaster />);
@@ -74,7 +119,7 @@ export default function AutoGrid() {
         alert("Not found..");
         return;
     }
-    setModalState(true);
+    setModalState(false);
   };
 
   return (

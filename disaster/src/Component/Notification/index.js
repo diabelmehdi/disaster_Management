@@ -23,12 +23,14 @@ class InputForm extends React.Component {
     this.state = {
       name: "",
       message: "",
+      messageFromTheRescue:"For now nothing",
       tabValue: 0,
       notificationContent: <div>Notification</div>,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleTabChange = this.handleTabChange.bind(this);
     this.sendMessage = this.sendMessage.bind(this);
+    this.getMessage = this.getMessage.bind(this);
   }
 
   handleInputChange(e) {
@@ -36,20 +38,39 @@ class InputForm extends React.Component {
       [e.target.name]: e.target.value,
     });
   }
+
   ///receive tthe automatic mesage from the backend
   sendMessage() {
+    
     VictimHelper.sendMessage(this.state.name, this.state.message)
       .then((res) => {
         if (res.status == 200) {
-          swal("Success", res.data, "success");
+          swal("Success", "Your message is saved", "success");
         } else {
-          swal("Failure", res.data, "error");
+          swal("Failure", "Your message is not saved, try again", "error");
         }
         // in case of run message
       })
       .catch((err) => {
         swal("Failure", "try again!! unhandled error", "error");
       });
+  }
+  getMessage(){
+    VictimHelper.getMessageByUsername(this.state.name).then((res)=> {
+      console.log(res.data)
+      if(res.data != ""){
+        this.setState({
+          messageFromTheRescue: res.data
+        })
+      } else{
+        this.setState({
+          messageFromTheRescue: "Still no message, wait cerfully!"
+        })
+      }
+    }).catch((err)=>{
+      swal("Failure","Try again, make sure you wrote the username on the other side","error")
+
+    })
   }
 
   handleTabChange(event, newValue) {
@@ -101,6 +122,14 @@ class InputForm extends React.Component {
             </React.Fragment>
           )}
           <Box borderBottom={1} m={3} />
+          {this.state.tabValue === 1 && (
+            <React.Fragment>
+              <FormGroup>
+                <Label for="name">{this.state.messageFromTheRescue}</Label>
+              </FormGroup>
+              <Button onClick={this.getMessage}>Get the message from rescue helper</Button>
+            </React.Fragment>
+          )}
         </Box>
       </React.Fragment>
     );

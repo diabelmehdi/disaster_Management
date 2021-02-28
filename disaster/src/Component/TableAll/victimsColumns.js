@@ -8,7 +8,8 @@ const victimsColumns = [
     { title: "Tel", field: "tel"},
     { title: "Message", field: "message" },
     {title: "Blood Type", field: "bloodType"},
-    {title: "Allergy", field: "allergy"}
+    {title: "Allergy", field: "allergy"},
+    {title: "Disaster",field: "disaster"}
 ];
 
 export default victimsColumns;
