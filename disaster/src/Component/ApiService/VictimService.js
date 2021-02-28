@@ -34,7 +34,7 @@ class VictimService {
         street: streetValue1,
         city: cityValue1,
         description: descriptionValue1,
-        birthday: dateOfBirthValue1,
+        dateOfBirth: dateOfBirthValue1,
         allergy: allergyValue1,
         bloodType: bloodTypeValue1,
         tel: telValue1,
@@ -46,20 +46,28 @@ class VictimService {
   }
 
   getVictimByUsername(victimUsername) {
-    return axios.get(VICTIMS_REST_API_URL + "/victims/" + victimUsername, {
-      headers: authHeader(),
-    });
+    return axios.get(VICTIMS_REST_API_URL + "/victims/" + victimUsername, {});
   }
-  deleteVictim(username){
-    return axios.delete(VICTIMS_REST_API_URL+ "/delete/" + username, { headers: authHeader() })
+  deleteVictim(username) {
+    return axios.delete(VICTIMS_REST_API_URL + "/delete/" + username, {});
   }
 
   updateVictim(victim, victimUsername) {
     return axios.put(
       VICTIMS_REST_API_URL + "/victims/" + victimUsername,
       victim,
-      { headers: authHeader() }
+      {}
     );
+  }
+
+  sendMessage(entredName, message) {
+    return axios.put(VICTIMS_REST_API_URL + "/victimsMessage/" + entredName, {
+      message: message,
+    });
+  }
+
+  getVictimMessages() {
+    return axios.get();
   }
 }
 

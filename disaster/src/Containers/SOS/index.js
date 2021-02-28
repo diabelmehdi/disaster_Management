@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import SosService from "src/Component/ApiService/SosService";
+import Disaster from "src/Component/Notification";
 
 import "./Style.css";
 
@@ -32,11 +33,7 @@ class Timer extends React.Component {
   }
 }
 
-
-
 class StartButton extends React.Component {
-
-
   render() {
     return (
       <div style={{ marginLeft: 130 }}>
@@ -67,24 +64,30 @@ class SOS extends React.Component {
     this.tick = this.tick.bind(this);
   }
 
-  componentDidMount()  {
+  componentDidMount() {
     var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    
-   navigator.geolocation.getCurrentPosition(function(position) {
-      let sos = {
-         "latitude": position.coords.latitude,
-         "longtitude": position.coords.longitude,
-         "date": date
-      }
-      SosService.createSos(sos).then((response) => {
-      });
-    }, function(e){
-       alert(e.code)
-    }, { timeout:30000, enableHighAccuracy:false});
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
 
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        let sos = {
+          latitude: position.coords.latitude,
+          longtitude: position.coords.longitude,
+          date: date,
+        };
+        SosService.createSos(sos).then((response) => {});
+      },
+      function (e) {
+        alert(e.code);
+      },
+      { timeout: 30000, enableHighAccuracy: false }
+    );
   }
-  
 
   handleChange(event) {
     this.setState({

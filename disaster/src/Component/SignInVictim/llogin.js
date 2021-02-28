@@ -20,7 +20,7 @@ import Login from "src/Component/LoginVictim/Login";
 import "date-fns";
 import { useHistory } from "react-router-dom";
 import VictimService from "../ApiService/VictimService";
-
+import Landing from "src/Component/Choose_Disaster";
 const styles = (theme) => ({
   paper: {
     marginTop: theme.spacing(1),
@@ -87,7 +87,7 @@ class SignInVictim extends React.Component {
       var alg2 = this.state.input["allergy"];
       var blt2 = this.state.input["bloodType"];
       var tel2 = this.state.input["tel"];
-      var pwd2 = this.state.input["password"];
+      // var pwd2 = this.state.input["password"];
 
       // this.setState({ input: {} });
       VictimService.createVictim(
@@ -102,8 +102,8 @@ class SignInVictim extends React.Component {
         alg2,
         blt2,
         tel2,
-        pwd2,
-        "/Login"
+        // pwd2,
+        "/Landing"
       );
       // window.location.href = "/Login";
       // alert("Registration successful");
@@ -147,13 +147,15 @@ class SignInVictim extends React.Component {
       errors["tel"] = "Please enter your Phone Number.";
     }
 
-    if (!input["password"]) {
-      isValid = false;
-      errors["password"] = "Please enter your password.";
-    }
+    // if (!input["password"]) {
+    //   isValid = false;
+    //   errors["password"] = "Please enter your password.";
+    // }
     if (!input["dateOfBirth"]) {
       isValid = false;
       errors["dateOfBirth"] = "Please enter your date Of Birth.";
+    } else {
+      // must check birthday date
     }
     this.setState({
       errors: errors,
@@ -172,7 +174,7 @@ class SignInVictim extends React.Component {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            FORM
           </Typography>
           {/* <form className={classes.form} noValidate> */}
           <Grid container spacing={2}>
@@ -254,7 +256,7 @@ class SignInVictim extends React.Component {
               />
               <div className="text-danger">{this.state.errors["nrStreet"]}</div>
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <input
                 type="password"
                 name="password"
@@ -265,7 +267,7 @@ class SignInVictim extends React.Component {
                 id="password"
               />
               <div className="text-danger">{this.state.errors["password"]}</div>
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} sm={6}>
               <input
                 type="text"
@@ -366,11 +368,7 @@ class SignInVictim extends React.Component {
             display="flex"
             justifyContent="flex-end"
             width="100%"
-          >
-            <Link href="Login" variant="body2">
-              Already have an account? Sign in
-            </Link>
-          </Box>
+          ></Box>
         </div>
       </Container>
     );

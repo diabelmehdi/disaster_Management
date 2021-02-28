@@ -26,12 +26,6 @@ const styles = (theme) => ({
 });
 
 class LoginRTab extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     openModal: false,
-  //   };
-  // }
   constructor() {
     super();
     this.state = {
@@ -150,12 +144,6 @@ class LoginRTab extends React.Component {
             <br />
             {this.state.UnauthorisedError}
             <Grid container alignItems="center" justify="space-between">
-              <Grid item>
-                <FormControlLabel
-                  control={<Checkbox color="primary" />}
-                  label="Remember me"
-                />
-              </Grid>
               <Grid item>
                 <Link href="forgot" color="primary" variant="body2">
                   Forgot password ?
