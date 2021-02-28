@@ -7,21 +7,17 @@ import "./AppRescue.css";
 
 export const ThemeContext = React.createContext({
   victims: [],
-  setVictims: () => {}
+  setVictims: () => {},
 });
 
-export const SosContext = React.createContext(
-  {
-    sosCases:[],
-    setSosCases: () => {}
-  }
-);
-export const MessageContext = React.createContext(
-  {
-    messageToThePerson:"Hey",
-    setMessage: () => {}
-  }
-);
+export const SosContext = React.createContext({
+  sosCases: [],
+  setSosCases: () => {},
+});
+export const MessageContext = React.createContext({
+  messageToThePerson: "Hey",
+  setMessage: () => {},
+});
 
 // constructor(props) {
 //   super(props);
@@ -33,50 +29,47 @@ export const MessageContext = React.createContext(
 // };
 
 function AppRescue() {
+  const [message, setMessage] = useState("Hey you");
 
-
-   const [message, setMessage] = useState("Hey you");
-
-  function setMessageData(message){
+  function setMessageData(message) {
     setMessage(message);
   }
 
   const [victims, setVictims] = useState([]);
 
-  function setDataVictims(table){
+  function setDataVictims(table) {
     setVictims(table);
   }
   const [sosCases, setSosCases] = useState([]);
 
-  function setDataSOS(table){
+  function setDataSOS(table) {
     setSosCases(table);
   }
 
-
   return (
-    <MessageContext.Provider value ={{message,setMessageData}}>
-    <ThemeContext.Provider value={{victims, setDataVictims}}>
-    <SosContext.Provider value = {{sosCases,setSosCases}}>
-      <div>
-        <ButtonTable messageTo='Table' />
-        <div class="lol">
-          <MapWithMarker />
-        </div>
-        <div class="content">
-          <div class="left">
-            <Message />
-          </div>
-          <div class="right">
-            <div>
-              {" "}
-              <ToggleSwitch title="Switch to light up" />
-              <ToggleSwitch title="Switch to call everyone" />
+    <MessageContext.Provider value={{ message, setMessageData }}>
+      <ThemeContext.Provider value={{ victims, setDataVictims }}>
+        <SosContext.Provider value={{ sosCases, setSosCases }}>
+          <div>
+            <ButtonTable messageTo="Table" />
+            <div class="lol">
+              <MapWithMarker />
+            </div>
+            <div class="content">
+              <div class="left">
+                <Message />
+              </div>
+              <div class="right">
+                <div>
+                  {" "}
+                  <ToggleSwitch title="Switch to light up" />
+                  <ToggleSwitch title="Switch to call everyone" />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      </SosContext.Provider>
-    </ThemeContext.Provider>
+        </SosContext.Provider>
+      </ThemeContext.Provider>
     </MessageContext.Provider>
   );
 }

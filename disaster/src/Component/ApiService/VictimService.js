@@ -22,7 +22,6 @@ class VictimService {
     allergyValue1,
     bloodTypeValue1,
     telValue1,
-    passwordValue1,
     pathToRedirect2
   ) {
     return axios
@@ -34,24 +33,23 @@ class VictimService {
         street: streetValue1,
         city: cityValue1,
         description: descriptionValue1,
-        birthday: dateOfBirthValue1,
+        dateOfBirth: dateOfBirthValue1,
         allergy: allergyValue1,
         bloodType: bloodTypeValue1,
-        tel: telValue1,
-        password: passwordValue1,
+        tel: telValue1
       })
       .then(() => {
         window.location.href = pathToRedirect2;
       });
   }
 
-  getVictimByUsername(victimUsername) {
-    return axios.get(VICTIMS_REST_API_URL + "/victims/" + victimUsername, {
+  getMessageByUsername(victimUsername) {
+    return axios.get(VICTIMS_REST_API_URL + "/message/" + victimUsername, {});
+  }
+  deleteVictim(username) {
+    return axios.delete(VICTIMS_REST_API_URL + "/delete/" + username, {
       headers: authHeader(),
     });
-  }
-  deleteVictim(username){
-    return axios.delete(VICTIMS_REST_API_URL+ "/delete/" + username, { headers: authHeader() })
   }
 
   updateVictim(victim, victimUsername) {
@@ -60,6 +58,21 @@ class VictimService {
       victim,
       { headers: authHeader() }
     );
+  }
+  updateDisaster(victim,victimUsername){
+    return axios.put(
+      VICTIMS_REST_API_URL + "/disaster/" + victimUsername, victim
+    )
+  }
+
+  sendMessage(entredName, message) {
+    return axios.put(VICTIMS_REST_API_URL + "/victimsMessage/" + entredName, {
+      message: message,
+    });
+  }
+
+  getVictimMessages() {
+    return axios.get();
   }
 }
 
