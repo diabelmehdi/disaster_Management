@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from 'sweetalert';
 
 const RESCUE_HELPER_REST_API_URL = "http://localhost:8080/api";
 
@@ -31,6 +32,8 @@ class RescueHelperService {
       })
       .then(() => {
         window.location.href = pathToRedirect1;
+      }).catch(err=>{
+        swal("Failure","User can exist","error")
       });
   }
 }
