@@ -1,15 +1,15 @@
 const victimsColumns = [
-    { title: "Name", field: "name"},
-    {title:"Username",field: "username"},
-    { title: "E-mail", field: "email"},
-    { title: "City", field: "city" },
-    { title: "Street", field: "street"},
-    { title: "Street Number", field: "nrStreet" },
-    { title: "Tel", field: "tel"},
-    { title: "Message", field: "message" },
-    {title: "Blood Type", field: "bloodType"},
-    {title: "Allergy", field: "allergy"},
-    {title: "Disaster",field: "disaster"}
+  { title: "Name", field: "name", editable: "never" },
+  { title: "Username", field: "username", editable: "never" },
+  { title: "E-mail", field: "email", editable: "never" },
+  { title: "City", field: "city", editable: "never" },
+  { title: "Street", field: "street", editable: "never" },
+  { title: "Street Number", field: "nrStreet", editable: "never" },
+  { title: "Tel", field: "tel", editable: "never" },
+  { title: "Message", field: "message", editable: "never" },
+  { title: "Blood Type", field: "bloodType", editable: "never" },
+  { title: "Allergy", field: "allergy", editable: "never" },
+  { title: "Disaster", field: "disaster", editable: "never" },
 ];
 
 export default victimsColumns;
