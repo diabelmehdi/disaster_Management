@@ -1,23 +1,49 @@
 import React, { Component } from "react";
-import axios from "axios";
+import RescueHelperService from "../ApiService/RescueHelperService";
 class forgot extends React.Component {
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const data = {
-      email: this.email,
+
+
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     email: this.email,
+  //   };
+  //   axios
+  //     .post("forgot", data)
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  constructor() {
+    super();
+    this.state = {
+      email: "",
     };
-    axios
-      .post("forgot", data)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  }
+  
+   handleSubmit = () => {
+     var email = {
+       "email":this.state.email
+     }
+    console.log()
+    RescueHelperService.sendPasswordEmail(email).then(res=>{
+      
+    }).catch(error=>{
+      alert(error)
+    })
+  }
+
+  handleInputChange(e) {
+    this.setState({
+      email: e.target.value,
+    });
+  }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <h3>Forgot Password</h3>
         <div className="form-group">
           <label>Email</label>
@@ -25,10 +51,11 @@ class forgot extends React.Component {
             type="email"
             className="form-control"
             placeholder="enter your email"
-            onChange={(e) => (this.email = e.target.value)}
+            onChange={(e) => this.handleInputChange(e) }
           />
         </div>
         <button
+          type="button"
           className="btn btn-primary btn-block"
           onClick={this.handleSubmit}
         >

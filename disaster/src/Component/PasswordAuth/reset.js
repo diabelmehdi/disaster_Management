@@ -2,27 +2,71 @@ import { FormatColorReset } from "@material-ui/icons";
 import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import RescueHelperService from "../ApiService/RescueHelperService";
+
+
+export const getQueryStringParams = query => {
+  return query
+      ? (/^[?#]/.test(query) ? query.slice(1) : query)
+          .split('&')
+          .reduce((params, param) => {
+                  let [key, value] = param.split('=');
+                  params[key] = value ? decodeURIComponent(value.replace(/\+/g, ' ')) : '';
+                  return params;
+              }, {}
+          )
+      : {}
+};
 class reset extends React.Component {
-  state = {};
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const data = {
-      token: this.props.match.params.id,
-      password: this.password,
-      password_confirm: this.password_confirm,
+  constructor() {
+    super();
+    this.state = {
+      password: "",
+      token:""
     };
-    axios
-      .post("reset", data)
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          reset: true,
-        });
+  }
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const data = {
+  //     token: this.props.match.params.id,
+  //     password: this.password,
+  //     password_confirm: this.password_confirm,
+  //   };
+  //   axios
+  //     .post("reset", data)
+  //     .then((res) => {
+  //       console.log(res);
+  //       this.setState({
+  //         reset: true,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+    // Reset password
+    onSubmit = async => {
+      
+      const params = getQueryStringParams(window.location.search);
+      this.setState({
+        token:params["token"],
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+      var data = {
+        "token": this.state.token,
+        "password": this.state.password
+      }
+      if(!params["token"]){
+          alert("eror");
+      }else{
+        RescueHelperService.sendReset(data).then(res=>{
+        }).catch(error=>alert(error))
+      }
+  }
+  handleInputChange(e) {
+    this.setState({
+      password: e.target.value,
+    });
+  }
 
   render() {
     if (this.state.rest) {
@@ -38,11 +82,11 @@ class reset extends React.Component {
             type="password"
             className="form-control"
             placeholder="enter your password"
-            onChange={(e) => (this.password = e.target.value)}
+            onChange={(e) => (this.handleInputChange(e))}
           />
         </div>
 
-        <div className="form-group">
+        {/* <div className="form-group">
           <label>Confirm Password</label>
           <input
             type="password"
@@ -50,7 +94,7 @@ class reset extends React.Component {
             placeholder="password Confirm"
             onChange={(e) => (this.password_confirm = e.target.value)}
           />
-        </div>
+        </div> */}
         <button
           className="btn btn-primary btn-block"
           onClick={this.handleSubmit}

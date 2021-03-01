@@ -30,7 +30,7 @@ function App() {
         <Route path="/LoginRescue" exact component={LoginRescue} />
         <Route path="/LoginResc" exact component={LoginResc} />
         <Route path="/forgot" exact component={forgot} />
-        <Route path="/reset/:id" exact component={reset} />
+        <Route path="/reset-password" exact component={reset} />
       </div>
     </Router>
   );
