@@ -15,7 +15,7 @@ class forgot extends React.Component {
     var email = {
       "email": this.state.email
     }
-    console.log()
+    console.log(email)
     RescueHelperService.sendPasswordEmail(email).then(res => {
       swal("Success", "Check your email and click the link", "success")
     }).catch(error => {
@@ -24,6 +24,7 @@ class forgot extends React.Component {
   }
 
   handleInputChange(e) {
+    console.log(this.state.email)
     this.setState({
       email: e.target.value,
     });

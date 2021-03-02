@@ -13,49 +13,71 @@ export const ButtonTable = (props) => {
   const [tableName, setTableName] = useState({
     table: [],
     typeOfData: "",
-    selectionAllowed: true
-
+    selectionAllowed: true,
   });
 
   const [sosTable, setSosTable] = useState([]);
   const [victimTable, setVictimTable] = useState([]);
   const [tableColumns, setTableColumns] = useState(allColumns);
   const [theArray, setTheArray] = useState([]);
-
+  const [cellEdit, setCellEdit] = useState({
+    onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {},
+  });
   const { setDataVictims } = useContext(ThemeContext);
   const { setSosCases } = useContext(SosContext);
-
 
   const buttonPressed = (e) => {
     switch (e.target.name) {
       case "Victims":
         setButtonClicked("Victims");
         setTableColumns(victimsColumns);
-        setTableName({ table: victimTable, typeOfData: "Victims", selectionAllowed: true });
+        setTableName({
+          table: victimTable,
+          typeOfData: "Victims",
+          selectionAllowed: true,
+        });
         break;
       case "SOS":
         setButtonClicked("SOS");
         setTableColumns(sosColumns);
-        setTableName({ table: sosTable, typeOfData: "SOS", selectionAllowed: false });
+        setTableName({
+          table: sosTable,
+          typeOfData: "SOS",
+          selectionAllowed: false,
+        });
+        setCellEdit({
+          onCellEditApproved: (newValue, oldValue, rowData, columnDef) => {
+            return new Promise((resolve, reject) => {
+              SosService.updateTimer(rowData.id, newValue)
+                .then((resp) => {
+                  rowData.timer = newValue;
+                  resolve();
+                })
+                .catch((err) => {
+                  console.log(err);
+                  reject();
+                });
+            });
+          },
+        });
         break;
+      //   default:
+      //     setButtonClicked("All");
+      //     setTableColumns(allColumns);
+      //     setTableName({table:theArray, typeOfData: "All",selectionAllowed:false});
     }
   };
   useEffect(() => {
     VictimService.getVictims().then((response) => {
       setVictimTable(response.data);
       setDataVictims(response.data);
-      setTheArray(theArray => [...theArray, ...response.data])
-
-
+      setTheArray((theArray) => [...theArray, ...response.data]);
     });
 
     SosService.getSos().then((response) => {
       setSosTable(response.data);
       setSosCases(response.data);
-      setTheArray(theArray => [...theArray, ...response.data])
-      console.log(theArray)
-
-
+      setTheArray((theArray) => [...theArray, ...response.data]);
     });
   }, []);
 
@@ -76,6 +98,7 @@ export const ButtonTable = (props) => {
         messageTo={props.messageTo}
         dataType={tableName.typeOfData}
         selectionAllowed={tableName.selectionAllowed}
+        cellEditable={cellEdit}
       />
     </div>
   );

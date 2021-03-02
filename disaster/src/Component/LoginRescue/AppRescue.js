@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { ToggleSwitch } from "src/Component/ToggleSwitch";
+import React, { useContext, useState } from "react";
 import { MapWithMarker } from "src/Component/MapWithMarker";
 import { Message } from "src/Component/Message";
 import { ButtonTable } from "src/Component/ButtonTable/index";
@@ -53,8 +52,8 @@ function AppRescue() {
               <div class="right">
                 <div>
                   {" "}
-                  <ToggleSwitch title="Switch to light up" />
-                  <ToggleSwitch title="Switch to call everyone" />
+                  {/* <ToggleSwitch title="Switch to light up" />
+                  <ToggleSwitch title="Switch to call everyone" /> */}
                 </div>
               </div>
             </div>

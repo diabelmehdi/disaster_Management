@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import SosService from "src/Component/ApiService/SosService";
 import Disaster from "src/Component/Notification";
-
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import "./Style.css";
 
 class TimerInput extends React.Component {
@@ -72,7 +74,7 @@ class SOS extends React.Component {
       (today.getMonth() + 1) +
       "-" +
       today.getDate();
-
+    var t = this;
     navigator.geolocation.getCurrentPosition(
       function (position) {
         let sos = {
@@ -80,7 +82,22 @@ class SOS extends React.Component {
           longtitude: position.coords.longitude,
           date: date,
         };
-        SosService.createSos(sos).then((response) => { });
+        SosService.createSos(sos).then((response) => {
+          localStorage.setItem("LastSOSId", response.data.id);
+          try {
+            var refreshId = setInterval(async () => {
+              SosService.getSOSTimerById(response.data.id).then((resp) => {
+                if (resp.data > 0) {
+                  t.setState({ value: resp.data });
+                  t.startCountDown();
+                  clearInterval(refreshId);
+                }
+              });
+            }, 1000);
+          } catch (e) {
+            console.log(e);
+          }
+        });
       },
       function (e) {
         alert(e.code);
@@ -133,38 +150,23 @@ class SOS extends React.Component {
   }
 
   render() {
-    const clicked = this.state.isClicked;
-    if (clicked) {
-      return (
-        <div>
-          <div className="row">
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-              <Timer value={this.state.value} seconds={this.state.seconds} />
-            </div>
+    return (
+      <div>
+        <div className="row">
+          <div className="col-md-4"></div>
+          <div className="col-md-4">
+            <Grid item xs={12}>
+              <Box Cdisplay="flex" justifyContent="center" m={1} p={1}>
+                <Typography align="center">
+                  We are Coming to Save you on this Time
+                </Typography>
+              </Box>
+            </Grid>
+            <Timer value={this.state.value} seconds={this.state.seconds} />
           </div>
         </div>
-      );
-    } else {
-      return (
-        <div>
-          <div className="row">
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-              <TimerInput
-                value={this.state.value}
-                handleChange={this.handleChange}
-              />
-              <Timer value={this.state.value} seconds={this.state.seconds} />
-              <StartButton
-                startCountDown={this.startCountDown}
-                value={this.state.value}
-              />
-            </div>
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
