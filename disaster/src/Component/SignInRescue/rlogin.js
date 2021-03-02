@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Paper,
   withStyles,
@@ -16,9 +16,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import LoginResc from "src/Component/LoginforRescue/LoginResc";
 import "date-fns";
-import { useHistory } from "react-router-dom";
 import RescueHelperService from "src/Component/ApiService/RescueHelperService";
 
 const styles = (theme) => ({
@@ -46,7 +44,6 @@ const styles = (theme) => ({
 });
 
 class SignInRescue extends React.Component {
-  // const classes = useStyles();
   constructor() {
     super();
     this.state = {
@@ -71,7 +68,6 @@ class SignInRescue extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log("test2");
     event.preventDefault();
     if (this.validate()) {
       console.log(this.state);
@@ -87,7 +83,6 @@ class SignInRescue extends React.Component {
       var tel1 = this.state.input["phoneNumber"];
       var Prf1 = this.state.input["profession"];
 
-      // this.setState({ input: input });
       RescueHelperService.createRescueHelper(
         un1,
         pwd1,
@@ -101,8 +96,6 @@ class SignInRescue extends React.Component {
         Prf1,
         "/LoginResc"
       );
-      // window.location.href = "/LoginResc";
-      // alert("Registration successful");
     }
   }
 

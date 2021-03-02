@@ -5,25 +5,25 @@ const SOS_REST_API_URL = 'http://localhost:8080/api/sos';
 
 
 class SosService {
-    getSos(){
-      return axios.get(SOS_REST_API_URL,{ headers: authHeader() })
-    }
+  getSos() {
+    return axios.get(SOS_REST_API_URL, { headers: authHeader() })
+  }
 
-    createSos(sos){
-      return axios.post(SOS_REST_API_URL,sos)
-    }
+  createSos(sos) {
+    return axios.post(SOS_REST_API_URL, sos)
+  }
 
-    getSOSById(sosId){
-      return axios.get(SOS_REST_API_URL+'/'+ sosId)
-    }
+  getSOSById(sosId) {
+    return axios.get(SOS_REST_API_URL + '/' + sosId)
+  }
 
-    deleteSOS(latitude){
-      return axios.delete(SOS_REST_API_URL+ "/delete/" +latitude)
-    }
+  deleteSOS(latitude) {
+    return axios.delete(SOS_REST_API_URL + "/delete/" + latitude)
+  }
 
-    updateSOS(sos, sosId){
-      return axios.put(SOS_REST_API_URL+'/'+ sosId, sos)
-    }
+  updateSOS(sos, sosId) {
+    return axios.put(SOS_REST_API_URL + '/' + sosId, sos)
+  }
 }
 
 export default new SosService()

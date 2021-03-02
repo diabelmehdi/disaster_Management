@@ -87,9 +87,7 @@ class SignInVictim extends React.Component {
       var alg2 = this.state.input["allergy"];
       var blt2 = this.state.input["bloodType"];
       var tel2 = this.state.input["tel"];
-      // var pwd2 = this.state.input["password"];
 
-      // this.setState({ input: {} });
       VictimService.createVictim(
         un2,
         nm2,
@@ -102,18 +100,14 @@ class SignInVictim extends React.Component {
         alg2,
         blt2,
         tel2,
-        // pwd2,
         "/Landing"
       );
-      // window.location.href = "/Login";
-      // alert("Registration successful");
+
     }
   }
 
   validate() {
-    console.log("test16");
     let input = this.state.input;
-    console.log(input);
     let errors = {};
     let isValid = true;
     if (!input["check"]) {
@@ -122,35 +116,27 @@ class SignInVictim extends React.Component {
     }
     if (!input["username"]) {
       isValid = false;
-      console.log("test");
       errors["username"] = "Please enter your User Name.";
     }
 
     if (!input["name"]) {
       isValid = false;
-      console.log("test");
       errors["name"] = "Please enter your Full Name.";
     }
     if (!input["allergy"]) {
       isValid = false;
-      console.log("test");
+
       errors["allergy"] = "Please enter your Type of allergy.";
     }
     if (!input["bloodType"]) {
       isValid = false;
-      console.log("test");
       errors["bloodType"] = "Please enter your Blood type.";
     }
     if (!input["tel"]) {
       isValid = false;
-      console.log("test");
       errors["tel"] = "Please enter your Phone Number.";
     }
 
-    // if (!input["password"]) {
-    //   isValid = false;
-    //   errors["password"] = "Please enter your password.";
-    // }
     if (!input["dateOfBirth"]) {
       isValid = false;
       errors["dateOfBirth"] = "Please enter your date Of Birth.";
@@ -160,7 +146,7 @@ class SignInVictim extends React.Component {
     this.setState({
       errors: errors,
     });
-    console.log(errors, input);
+
     return isValid;
   }
 
@@ -256,18 +242,6 @@ class SignInVictim extends React.Component {
               />
               <div className="text-danger">{this.state.errors["nrStreet"]}</div>
             </Grid>
-            {/* <Grid item xs={12}>
-              <input
-                type="password"
-                name="password"
-                value={this.state.input["password"]}
-                onChange={this.handleChange}
-                class="form-control"
-                placeholder="Enter password"
-                id="password"
-              />
-              <div className="text-danger">{this.state.errors["password"]}</div>
-            </Grid> */}
             <Grid item xs={12} sm={6}>
               <input
                 type="text"

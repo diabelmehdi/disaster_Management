@@ -32,16 +32,16 @@ class RescueHelperService {
       })
       .then(() => {
         window.location.href = pathToRedirect1;
-      }).catch(err=>{
-        swal("Failure","User can exist","error")
+      }).catch(err => {
+        swal("Failure", "User can exist", "error")
       });
   }
 
-  sendPasswordEmail(userEmail){
-    return axios.post(RESCUE_HELPER_REST_API_URL+"/request-password-reset",userEmail)
+  sendPasswordEmail(userEmail) {
+    return axios.post(RESCUE_HELPER_REST_API_URL + "/request-password-reset", userEmail)
   }
-  sendReset(data){
-    return axios.post(RESCUE_HELPER_REST_API_URL+"/password-reset",data)
+  sendReset(data) {
+    return axios.post(RESCUE_HELPER_REST_API_URL + "/password-reset", data)
   }
 }
 export default new RescueHelperService();

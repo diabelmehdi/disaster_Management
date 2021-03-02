@@ -80,7 +80,7 @@ class SOS extends React.Component {
           longtitude: position.coords.longitude,
           date: date,
         };
-        SosService.createSos(sos).then((response) => {});
+        SosService.createSos(sos).then((response) => { });
       },
       function (e) {
         alert(e.code);

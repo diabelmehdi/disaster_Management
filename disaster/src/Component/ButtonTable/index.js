@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Style.css";
-import {TableAll} from "src/Component/TableAll";
+import { TableAll } from "src/Component/TableAll";
 import allColumns from "src/Component/TableAll/allColumns";
 import victimsColumns from "src/Component/TableAll/victimsColumns";
 import sosColumns from "src/Component/TableAll/sosColumns";
@@ -22,26 +22,22 @@ export const ButtonTable = (props) => {
   const [tableColumns, setTableColumns] = useState(allColumns);
   const [theArray, setTheArray] = useState([]);
 
-  const {setDataVictims} = useContext(ThemeContext);
-  const {setSosCases} = useContext(SosContext);
-   
+  const { setDataVictims } = useContext(ThemeContext);
+  const { setSosCases } = useContext(SosContext);
+
 
   const buttonPressed = (e) => {
     switch (e.target.name) {
       case "Victims":
         setButtonClicked("Victims");
         setTableColumns(victimsColumns);
-        setTableName({table:victimTable, typeOfData: "Victims",selectionAllowed:true});
+        setTableName({ table: victimTable, typeOfData: "Victims", selectionAllowed: true });
         break;
       case "SOS":
         setButtonClicked("SOS");
         setTableColumns(sosColumns);
-        setTableName({table:sosTable, typeOfData: "SOS",selectionAllowed:false});
+        setTableName({ table: sosTable, typeOfData: "SOS", selectionAllowed: false });
         break;
-    //   default:
-    //     setButtonClicked("All");
-    //     setTableColumns(allColumns);
-    //     setTableName({table:theArray, typeOfData: "All",selectionAllowed:false});
     }
   };
   useEffect(() => {
@@ -49,8 +45,8 @@ export const ButtonTable = (props) => {
       setVictimTable(response.data);
       setDataVictims(response.data);
       setTheArray(theArray => [...theArray, ...response.data])
-      
-      
+
+
     });
 
     SosService.getSos().then((response) => {
@@ -58,8 +54,8 @@ export const ButtonTable = (props) => {
       setSosCases(response.data);
       setTheArray(theArray => [...theArray, ...response.data])
       console.log(theArray)
-      
-    
+
+
     });
   }, []);
 

@@ -1,37 +1,24 @@
 import React, { Component } from "react";
 import RescueHelperService from "../ApiService/RescueHelperService";
+import swal from 'sweetalert';
+
 class forgot extends React.Component {
 
-
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const data = {
-  //     email: this.email,
-  //   };
-  //   axios
-  //     .post("forgot", data)
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
   constructor() {
     super();
     this.state = {
       email: "",
     };
   }
-  
-   handleSubmit = () => {
-     var email = {
-       "email":this.state.email
-     }
+
+  handleSubmit = () => {
+    var email = {
+      "email": this.state.email
+    }
     console.log()
-    RescueHelperService.sendPasswordEmail(email).then(res=>{
-      
-    }).catch(error=>{
+    RescueHelperService.sendPasswordEmail(email).then(res => {
+      swal("Success", "Check your email and click the link", "success")
+    }).catch(error => {
       alert(error)
     })
   }
@@ -51,7 +38,7 @@ class forgot extends React.Component {
             type="email"
             className="form-control"
             placeholder="enter your email"
-            onChange={(e) => this.handleInputChange(e) }
+            onChange={(e) => this.handleInputChange(e)}
           />
         </div>
         <button

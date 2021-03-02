@@ -33,10 +33,10 @@ export default function AutoGrid() {
   const [modalContent, setModalContent] = React.useState(<div></div>);
   const [modalState, setModalState] = React.useState(false);
 
-  const sendDisaster = (disaster)=>{
-  var victim = {
-    disaster: disaster
-  }
+  const sendDisaster = (disaster) => {
+    var victim = {
+      disaster: disaster
+    }
     swal({
       text: 'Please fill out your username".',
       content: "input",
@@ -45,34 +45,23 @@ export default function AutoGrid() {
         closeModal: false,
       },
     })
-    .then(name => {
-      if (!name) throw null;
-      VictimService.updateDisaster(victim,name).then((res)=>{
-        swal.stopLoading();
-        swal.close();
-        setModalState(true)
-      }).catch(err => {
-        if (err) {
-          swal("Oh noes!", "Check your username!", "error");
-        } else {
+      .then(name => {
+        if (!name) throw null;
+        VictimService.updateDisaster(victim, name).then((res) => {
           swal.stopLoading();
           swal.close();
+          setModalState(true)
+        }).catch(err => {
+          if (err) {
+            swal("Oh noes!", "Check your username!", "error");
+          } else {
+            swal.stopLoading();
+            swal.close();
+          }
         }
-      }
+        )
+      })
 
-    
-    )})
-  
-   
-    // .catch(err => {
-    //   if (err) {
-    //     swal("Oh noes!", "Check your username!", "error");
-    //   } else {
-    //     swal.stopLoading();
-    //     swal.close();
-    //   }
-    // });
-    
   }
 
   const openModal = (disaster) => {

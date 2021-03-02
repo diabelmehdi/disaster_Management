@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
-import Axios from "axios";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -23,7 +22,7 @@ class InputForm extends React.Component {
     this.state = {
       name: "",
       message: "",
-      messageFromTheRescue:"For now nothing",
+      messageFromTheRescue: "For now nothing",
       tabValue: 0,
       notificationContent: <div>Notification</div>,
     };
@@ -41,7 +40,7 @@ class InputForm extends React.Component {
 
   ///receive tthe automatic mesage from the backend
   sendMessage() {
-    
+
     VictimHelper.sendMessage(this.state.name, this.state.message)
       .then((res) => {
         if (res.status == 200) {
@@ -55,20 +54,20 @@ class InputForm extends React.Component {
         swal("Failure", "try again!! unhandled error", "error");
       });
   }
-  getMessage(){
-    VictimHelper.getMessageByUsername(this.state.name).then((res)=> {
+  getMessage() {
+    VictimHelper.getMessageByUsername(this.state.name).then((res) => {
       console.log(res.data)
-      if(res.data != ""){
+      if (res.data != "") {
         this.setState({
           messageFromTheRescue: res.data
         })
-      } else{
+      } else {
         this.setState({
           messageFromTheRescue: "Still no message, wait cerfully!"
         })
       }
-    }).catch((err)=>{
-      swal("Failure","Try again, make sure you wrote the username on the other side","error")
+    }).catch((err) => {
+      swal("Failure", "Try again, make sure you wrote the username on the other side", "error")
 
     })
   }

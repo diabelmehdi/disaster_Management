@@ -41,8 +41,8 @@ class VictimService {
       })
       .then(() => {
         window.location.href = pathToRedirect2;
-      }).catch(err=>{
-        swal("Failure","User exists","error")
+      }).catch(err => {
+        swal("Failure", "User exists", "error")
       });
   }
 
@@ -62,7 +62,7 @@ class VictimService {
       { headers: authHeader() }
     );
   }
-  updateDisaster(victim,victimUsername){
+  updateDisaster(victim, victimUsername) {
     return axios.put(
       VICTIMS_REST_API_URL + "/disaster/" + victimUsername, victim
     )

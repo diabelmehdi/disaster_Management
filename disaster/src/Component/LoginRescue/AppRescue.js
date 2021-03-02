@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { ToggleSwitch } from "src/Component/ToggleSwitch";
 import { MapWithMarker } from "src/Component/MapWithMarker";
 import { Message } from "src/Component/Message";
@@ -7,26 +7,17 @@ import "./AppRescue.css";
 
 export const ThemeContext = React.createContext({
   victims: [],
-  setVictims: () => {},
+  setVictims: () => { },
 });
 
 export const SosContext = React.createContext({
   sosCases: [],
-  setSosCases: () => {},
+  setSosCases: () => { },
 });
 export const MessageContext = React.createContext({
   messageToThePerson: "Hey",
-  setMessage: () => {},
+  setMessage: () => { },
 });
-
-// constructor(props) {
-//   super(props);
-//   this.state = { message: "someMessage" };
-//   this.changeMessage = this.changeMessage.bind(this);
-// }
-// changeMessage = message => {
-//   this.setState({ message });
-// };
 
 function AppRescue() {
   const [message, setMessage] = useState("Hey you");
