@@ -46,16 +46,7 @@ function AppRescue() {
               <MapWithMarker />
             </div>
             <div class="content">
-              <div class="left">
                 <Message />
-              </div>
-              <div class="right">
-                <div>
-                  {" "}
-                  {/* <ToggleSwitch title="Switch to light up" />
-                  <ToggleSwitch title="Switch to call everyone" /> */}
-                </div>
-              </div>
             </div>
           </div>
         </SosContext.Provider>
